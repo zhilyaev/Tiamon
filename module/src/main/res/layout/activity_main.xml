@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+              android:layout_height="match_parent" android:id="@+id/layout_main"
+              android:weightSum="1" android:gravity="center" tools:context=".Main">
+
+    <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" android:layout_gravity="center_horizontal">
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Q"
+                android:id="@+id/btn_exit"
+                android:width="@dimen/sqr_btn" android:height="@dimen/sqr_btn" android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/menu"
+                android:id="@+id/TitleMenu"
+                android:layout_alignBottom="@+id/btn_exit" android:layout_centerHorizontal="true"/>
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout2" android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true">
+            <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/in_game"
+                    android:id="@+id/menu_btn1" android:layout_centerHorizontal="true"
+                    android:width="@dimen/menu_btn_width" android:layout_centerVertical="true" android:height="@dimen/menu_btn_height"
+                    android:maxWidth="@dimen/menu_btn_width" android:onClick="GameActivity"/>
+            <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/new_game"
+                    android:id="@+id/menu_btn2" android:width="@dimen/menu_btn_width"
+                    android:height="@dimen/menu_btn_height" android:layout_below="@+id/menu_btn1"
+                    android:layout_centerHorizontal="true" android:onClick="NewGameActivity"/>
+            <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/records"
+                    android:id="@+id/menu_btn3" android:width="@dimen/menu_btn_width" android:height="@dimen/menu_btn_height"
+                    android:layout_below="@+id/menu_btn2" android:layout_centerHorizontal="true"
+                    android:onClick="RecordsActivity"/>
+        </LinearLayout>
+        <include android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 layout="@layout/sound" android:layout_alignParentTop="true" android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
+</LinearLayout>

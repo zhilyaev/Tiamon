@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:textAppearance="?android:attr/textAppearanceLarge" android:text="@string/records"
+                  android:id="@+id/textView3"
+                  android:layout_gravity="center_horizontal"
+                  android:layout_alignBottom="@+id/include2" android:layout_centerHorizontal="true"/>
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true" android:layout_centerHorizontal="true">
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="1."
+                        android:id="@+id/textView4" android:layout_margin="5dp"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="name"
+                        android:id="@+id/textView5" android:layout_margin="5dp"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:textAppearance="?android:attr/textAppearanceLarge" android:text="age"
+                          android:id="@+id/textView8" android:layout_margin="5dp"/>
+            </LinearLayout>
+            <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content"
+                          android:layout_height="wrap_content">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:textAppearance="?android:attr/textAppearanceLarge" android:text="2."
+                          android:id="@+id/textView6" android:layout_margin="5dp"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:textAppearance="?android:attr/textAppearanceLarge" android:text="Large Text"
+                          android:id="@+id/textView7" android:layout_margin="5dp"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:textAppearance="?android:attr/textAppearanceLarge" android:text="Large Text"
+                          android:id="@+id/textView9" android:layout_margin="5dp"/>
+            </LinearLayout>
+            <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content"
+                          android:layout_height="wrap_content">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:textAppearance="?android:attr/textAppearanceLarge" android:text="3."
+                          android:id="@+id/textView10" android:layout_margin="5dp"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:textAppearance="?android:attr/textAppearanceLarge" android:text="Large Text"
+                          android:id="@+id/textView11" android:layout_margin="5dp"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:textAppearance="?android:attr/textAppearanceLarge" android:text="Large Text"
+                          android:id="@+id/textView12" android:layout_margin="5dp"/>
+            </LinearLayout>
+        </LinearLayout>
+        <include android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 layout="@layout/sound" android:layout_alignParentTop="true" android:layout_alignParentEnd="true"/>
+        <include android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 layout="@layout/back" android:layout_alignParentTop="true" android:layout_alignParentStart="true"
+                 android:id="@+id/include2"/>
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,15 @@
+<resources>
+
+    <string name="action_settings">Настройки</string>
+    <string name="app_name">Таймон</string>
+    <string name="hello_world">Привет, Товарищ!</string>
+    <string name="in_game">Продолжить</string>
+    <string name="title_activity_main">Главный</string>
+    <string name="new_game">Новая игра</string>
+    <string name="records">Рекорды</string>
+    <string name="menu">Меню</string>
+    <string name="Pets_name">Кличка</string>
+    <string name="Start_game">Начать игру</string>
+    <string name="about">О Таймоне</string>
+
+</resources>
