@@ -1,6 +1,7 @@
 package com.example.tiamon.module;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -8,6 +9,7 @@ import android.view.View;
 
 
 public class Main extends Activity {
+Intent intent_newgame, intent_records, intent_game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,19 +17,24 @@ public class Main extends Activity {
         setContentView(R.layout.activity_main);
     }
 
+    /* Переход в Активность: Новая Игра */
     public void NewGameActivity(View view){
-        setContentView(R.layout.activity_newgame);
+        intent_newgame = new Intent(this, NewGame.class);
+        startActivity(intent_newgame);
     }
 
-    public void BackMenu(View view) {setContentView(R.layout.activity_main);}
+    /* Переход в Активность: Рекорды */
+    public void RecordsActivity(View view) {
+        intent_records = new Intent(this, Records.class);
+        startActivity(intent_records);
+    }
 
-    public void RecordsActivity(View view) {setContentView(R.layout.activity_records);}
-
+    /* Переход в Активность: Игра */
     public void GameActivity(View view) {
-        setContentView(R.layout.activity_game);
+        intent_game = new Intent(this, Records.class);
+        startActivity(intent_records);
     }
 
-  // protected void CloseApp(View view){  }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
