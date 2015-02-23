@@ -64,10 +64,7 @@
         </LinearLayout>
         <include android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
-                 layout="@layout/sound" android:layout_alignParentTop="true" android:layout_alignParentEnd="true"/>
-        <include android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 layout="@layout/back" android:layout_alignParentTop="true" android:layout_alignParentStart="true"
+                 layout="@layout/sound" android:layout_alignParentTop="true" android:layout_alignParentStart="true"
                  android:id="@+id/include2"/>
     </RelativeLayout>
 </LinearLayout>
