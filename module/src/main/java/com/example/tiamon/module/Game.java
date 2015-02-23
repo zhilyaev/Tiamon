@@ -2,18 +2,17 @@ package com.example.tiamon.module;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.widget.Button;
+import android.widget.Toast;
 
 
 public class Game extends Activity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        Button sleep = (Button) findViewById(R.id.button8);
-        sleep.setText("vvv");
+        Toast.makeText(this, "In Game", Toast.LENGTH_SHORT).show();
     }
 
 

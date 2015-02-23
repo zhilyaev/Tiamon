@@ -9,7 +9,7 @@ import android.view.View;
 
 
 public class Main extends Activity {
-Intent intent_newgame, intent_records, intent_game;
+    Intent intent_newgame, intent_records, intent_game, intent_about;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +31,8 @@ Intent intent_newgame, intent_records, intent_game;
 
     /* Переход в Активность: Игра */
     public void GameActivity(View view) {
-        intent_game = new Intent(this, Records.class);
-        startActivity(intent_records);
+        intent_game = new Intent(this, Game.class);
+        startActivity(intent_game);
     }
 
 
@@ -46,6 +46,7 @@ Intent intent_newgame, intent_records, intent_game;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        /* Переход в Активность: о Таймоне */
         if (id == R.id.about) {
             return true;
         }
