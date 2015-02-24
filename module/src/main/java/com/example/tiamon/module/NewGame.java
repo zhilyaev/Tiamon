@@ -7,9 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 
 public class NewGame extends Activity {
 Intent intent_game;
@@ -23,16 +21,10 @@ Intent intent_game;
     /* Переход в Активность: Игра
      * Создание настроек */
     public void NewGame(View view) throws IOException {
-        FileOutputStream fos = new FileOutputStream("pet.out");
-        ObjectOutputStream oos = new ObjectOutputStream(fos);
-
         final EditText name = (EditText) findViewById(R.id.editText);
-        Pet pet = new Pet(name.toString());
-        /* Запись Объекта */
-        oos.writeObject(pet);
-        oos.flush();
-        oos.close();
-        // Переход
+        Pet pet = new Pet(name.getText().toString());
+        pet.Save();
+
         intent_game = new Intent(this, Game.class);
         startActivity(intent_game);
     }

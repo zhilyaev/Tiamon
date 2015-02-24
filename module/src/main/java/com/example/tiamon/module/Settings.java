@@ -4,7 +4,7 @@ package com.example.tiamon.module;
 import java.io.*;
 
 public class Settings{
-    public String path = "pet.out";
+    private String path = "pet.out";
 
     /* Получить настйроки питомца из файла */
     Pet GetPet(String path) throws IOException, ClassNotFoundException {
@@ -14,9 +14,7 @@ public class Settings{
     }
 
     Pet GetPet() throws IOException, ClassNotFoundException {
-        FileInputStream fis = new FileInputStream(this.path);
-        ObjectInputStream oin = new ObjectInputStream(fis);
-        return (Pet) oin.readObject();
+       return GetPet(this.path);
     }
 
     /* Сохрнаить питомца в файл */
@@ -29,11 +27,7 @@ public class Settings{
     }
 
     void SavePet(Pet pet) throws IOException{
-        FileOutputStream fos = new FileOutputStream(this.path);
-        ObjectOutputStream oos = new ObjectOutputStream(fos);
-        oos.writeObject(pet);
-        oos.flush();
-        oos.close();
+        SavePet(pet,this.path);
     }
 
 

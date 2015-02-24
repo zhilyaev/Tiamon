@@ -11,8 +11,9 @@ public class Game extends Activity {
     protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+        Pet pet = new Pet();
 
-        Toast.makeText(this, "In Game", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,pet.GetName(), Toast.LENGTH_SHORT).show();
     }
 
 
