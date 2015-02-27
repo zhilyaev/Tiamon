@@ -1,7 +1,9 @@
 package com.example.tiamon.module;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,20 +12,23 @@ import android.widget.Button;
 
 
 public class Main extends Activity {
+    public static final String APP_PREFERENCES = "mysettings";
+    public static final String APP_PREFERENCES_NAME = "NAME";
     Intent intent_newgame, intent_records, intent_game, intent_about;
+    SharedPreferences mSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Pet pet = new Pet();
-        // Если файл не создан, то кнопку "продолжить" диактивировать
-        if (pet.GetName().equals("")){
+        if (!mSettings.contains(APP_PREFERENCES_NAME)) {
+            // Если файл не создан, то кнопку "продолжить" диактивировать
             Button menu_btn1 = (Button) findViewById(R.id.menu_btn1);
             menu_btn1.setEnabled(false);
         }
