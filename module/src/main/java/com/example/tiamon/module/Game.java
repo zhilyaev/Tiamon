@@ -13,21 +13,20 @@ public class Game extends Activity {
     private  static final String APP_PREFERENCES_NAME = "NAME"; // Имя Питомца
     private  static final String APP_PREFERENCES_AGE = "AGE"; // Возраст питомца = время / (1000*60*60*24)  => [Кол-во дней]
     private  static final String APP_PREFERENCES_TIME = "TIME"; // Время в милисекундах со дня рождения
-    /* Поля */
-    TextView age, name;
     SharedPreferences mSettings;
-    /* toogle */
+
+    TextView age, name;
+
     private static boolean TOOGLE = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+        /* Установить найстройки в layout */
         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
-
         name = (TextView) findViewById(R.id.label_name);
         age = (TextView) findViewById(R.id.label_age);
-
         name.setText(mSettings.getString(APP_PREFERENCES_NAME, ""));
         age.setText(mSettings.getString(APP_PREFERENCES_AGE, ""));
     }
@@ -35,6 +34,7 @@ public class Game extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
+        /* Сохранить найстройки */
         SharedPreferences.Editor editor = mSettings.edit();
         editor.putString(APP_PREFERENCES_AGE, age.getText().toString());
         editor.apply();

@@ -6,4 +6,8 @@ public class Live extends Thread {
     public void run() {
 
     }
+
+    private void eventMoney(){
+
+    }
 }

@@ -11,5 +11,6 @@
     <string name="Pets_name">Кличка:</string>
     <string name="Start_game">Начать игру</string>
     <string name="about">О Таймоне</string>
+    <string name="Loading">Загрузка</string>
 
 </resources>

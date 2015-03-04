@@ -11,4 +11,5 @@
     <string name="Pets_name">Pets Name</string>
     <string name="Start_game">Start</string>
     <string name="about">About Tiamon</string>
+    <string name="Loading">Loading</string>
 </resources>

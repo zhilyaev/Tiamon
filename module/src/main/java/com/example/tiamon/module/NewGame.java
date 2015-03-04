@@ -16,7 +16,6 @@ Intent intent_game;
     /* Найстройки */
     public static final String APP_PREFERENCES = "mysettings";
     public static final String APP_PREFERENCES_NAME = "NAME";
-    public static final String APP_PREFERENCES_AGE = "AGE";
     SharedPreferences mSettings;
 
     @Override
@@ -34,7 +33,6 @@ Intent intent_game;
 
         SharedPreferences.Editor editor = mSettings.edit();
         editor.putString(APP_PREFERENCES_NAME, strname);
-        editor.putString(APP_PREFERENCES_AGE, "0");
         editor.apply();
 
         intent_game = new Intent(this, Game.class);
