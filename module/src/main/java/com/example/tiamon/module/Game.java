@@ -1,42 +1,22 @@
 package com.example.tiamon.module;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 
 
-public class Game extends Activity {
-    /* Найстройки */
-    private  static final String APP_PREFERENCES = "mysettings"; // имя файла настройки [mysettings.xml]
-    private  static final String APP_PREFERENCES_NAME = "NAME"; // Имя Питомца
-    private  static final String APP_PREFERENCES_AGE = "AGE"; // Возраст питомца = время / (1000*60*60*24)  => [Кол-во дней]
-    private  static final String APP_PREFERENCES_TIME = "TIME"; // Время в милисекундах со дня рождения
-    SharedPreferences mSettings;
-
-    TextView age, name;
-
-    private static boolean TOOGLE = false;
+public class Game extends Index {
+    TextView TV_age, TV_name;
+    Thread T;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         /* Установить найстройки в layout */
-        mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
-        name = (TextView) findViewById(R.id.label_name);
-        age = (TextView) findViewById(R.id.label_age);
-        name.setText(mSettings.getString(APP_PREFERENCES_NAME, ""));
-        age.setText(mSettings.getString(APP_PREFERENCES_AGE, ""));
+        TV_name = (TextView) findViewById(R.id.label_name);
+        TV_age = (TextView) findViewById(R.id.label_age);
+        TV_name.setText(PET.getString(_NAME, ""));
+        TV_age.setText(PET.getString(_AGE, ""));
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        /* Сохранить найстройки */
-        SharedPreferences.Editor editor = mSettings.edit();
-        editor.putString(APP_PREFERENCES_AGE, age.getText().toString());
-        editor.apply();
-    }
 }
