@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
 
 public class Index extends Activity {
     /* Найстройки: Основные */
@@ -25,8 +26,8 @@ public class Index extends Activity {
     protected  static final String _SHOP_MILK = "MILK";
     protected  static final String _SHOP_FISH = "FISH";
 
-    SharedPreferences PET;
-    SharedPreferences.Editor E;
+    protected SharedPreferences PET;
+    protected SharedPreferences.Editor E;
     /* Переход Активностей */
     protected Intent intent_newgame,intent_records,intent_game;
 
@@ -35,11 +36,13 @@ public class Index extends Activity {
         super.onCreate(savedInstanceState);
         // Показать экран загрузки
         setContentView(R.layout.activity_loading);
+        GifView(R.id.LoadingGifView,"cat_walking.gif");
         PET = getSharedPreferences(_PET, Context.MODE_PRIVATE);
         intent_newgame = new Intent(this, NewGame.class);
         intent_records = new Intent(this, Records.class);
         intent_game = new Intent(this, Game.class);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -58,4 +61,10 @@ public class Index extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void GifView(int R_id_webView,String drawable){
+        WebView gif;
+        gif = (WebView) findViewById(R_id_webView);
+        String htmlText = "<html><body><center><img style='' src='file:///android_res/drawable/"+drawable+"'/></center></body></html>";
+        gif.loadDataWithBaseURL(null, htmlText, "text/html", "en_US", null);
+    }
 }

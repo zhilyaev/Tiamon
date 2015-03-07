@@ -41,5 +41,10 @@
                  layout="@layout/sound"
                  android:id="@+id/include5" android:layout_alignParentTop="true"
                  android:layout_alignParentStart="true"/>
+        <WebView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/webView2" android:layout_below="@+id/linearLayout2"
+                android:layout_centerHorizontal="true" android:layout_marginTop="49dp"/>
     </RelativeLayout>
 </LinearLayout>

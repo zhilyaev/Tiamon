@@ -7,17 +7,17 @@
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent" android:layout_gravity="center_horizontal" android:id="@+id/RL_Loading">
-        <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageView" android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true" android:src="@drawable/walkingcat_white"/>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/Loading"
-                android:id="@+id/TW_Loading" android:layout_above="@+id/imageView"
+                android:id="@+id/TW_Loading"
+                android:layout_centerHorizontal="true" android:layout_centerVertical="true"/>
+        <WebView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/LoadingGifView" android:layout_below="@+id/TW_Loading"
                 android:layout_centerHorizontal="true"/>
     </RelativeLayout>
 </LinearLayout>
