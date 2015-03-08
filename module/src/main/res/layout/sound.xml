@@ -6,5 +6,6 @@
     <ToggleButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sound"
                   android:id="@+id/btn_sound"
                   android:height="@dimen/sqr_btn" android:width="@dimen/sqr_btn" android:checked="true"
-                  android:layout_alignParentTop="true" android:layout_alignParentStart="true"/>
+                  android:layout_alignParentTop="true" android:layout_alignParentStart="true" android:textOff="@string/off"
+                  android:textOn="@string/on"/>
 </RelativeLayout>

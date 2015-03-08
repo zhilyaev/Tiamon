@@ -12,5 +12,7 @@
     <string name="Start_game">Начать игру</string>
     <string name="about">О Таймоне</string>
     <string name="Loading">Загрузка</string>
+    <string name="off">выкл</string>
+    <string name="on">вкл</string>
 
 </resources>

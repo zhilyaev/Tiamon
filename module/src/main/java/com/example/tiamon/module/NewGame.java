@@ -13,6 +13,7 @@ public class NewGame extends Index {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newgame);
+        gifView(R.id.GifHi,"cat_purr.gif");
     }
 
     public void CreateGame(View view) throws IOException {

@@ -12,4 +12,6 @@
     <string name="Start_game">Start</string>
     <string name="about">About Tiamon</string>
     <string name="Loading">Loading</string>
+    <string name="on">on</string>
+    <string name="off">off</string>
 </resources>

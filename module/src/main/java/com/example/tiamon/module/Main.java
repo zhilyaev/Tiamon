@@ -12,7 +12,6 @@ public class Main extends Index {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
     }
 
     @Override
