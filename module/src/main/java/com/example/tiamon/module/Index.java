@@ -4,12 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
-import android.widget.Button;
+
 
 public class Index extends Activity {
     /* Найстройки: Основные */
@@ -19,15 +18,6 @@ public class Index extends Activity {
     protected  static final String _NEXTTIME = "NEXTTIME";   // [long] Время следущего захода в милисекундах
     protected  static final String _MONEY = "MONEY"; // [int] Котобаксы
     protected  static final String _TIME = "TIME"; // Время усложнения = FIRST_TIME-(U*n) , где n - кол-во заходов
-    /*  Найстройки: Статусы [INT] ∈ [0;100]  */
-    protected  static final String _STATUS_HANGRY = "HANGRY";
-    protected  static final String _STATUS_SLEEP = "SLEEP";
-    protected  static final String _STATUS_PLAY = "PLAY";
-    /*  Найстройки: Вещи [INT] ∈ [0;∞)  */
-    protected  static final String _SHOP_BALL = "BALL";
-    protected  static final String _SHOP_BED = "BED";
-    protected  static final String _SHOP_MILK = "MILK";
-    protected  static final String _SHOP_FISH = "FISH";
 
     protected SharedPreferences PET;
     protected SharedPreferences.Editor E;
@@ -48,10 +38,8 @@ public class Index extends Activity {
         intent_game = new Intent(this, Game.class);
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
