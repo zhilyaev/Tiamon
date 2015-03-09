@@ -3,8 +3,8 @@ package com.example.tiamon.module;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import java.util.Date;
 import java.util.Random;
 
@@ -45,16 +45,19 @@ public class Game extends Index{
     }
 
     protected void live(){
-        // Побочный поток
+        // Муахаха ЛЯМБДА
         T = new Thread((Runnable) () -> {
-                while(true){
-                    try {sleep(PET.getLong(_NEXTTIME,FIRST_TIME));}
-                    catch (InterruptedException e) {e.printStackTrace();}
+                while (true) {
+                    try {
+                        sleep(PET.getLong(_NEXTTIME, FIRST_TIME));
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
 
                     /* Изменить СТАТУСЫ */
-                    changeStatus(_STATUS_SLEEP,-random.nextInt(15));
-                    changeStatus(_STATUS_HANGRY,-random.nextInt(14));
-                    changeStatus(_STATUS_PLAY,-random.nextInt(13));
+                    changeStatus(_STATUS_SLEEP, -random.nextInt(15));
+                    changeStatus(_STATUS_HANGRY, -random.nextInt(14));
+                    changeStatus(_STATUS_PLAY, -random.nextInt(13));
 
                     // Умри
                     if (isDie()) break;
@@ -62,30 +65,34 @@ public class Game extends Index{
                     /* Время на Следущий заход */
                     E = PET.edit();
                     // NEXTTIME = Сейчас + Время разрыва
-                    E.putLong(_NEXTTIME, new Date().getTime()+PET.getLong(_TIME,FIRST_TIME)-U);
-                    E.putLong(_TIME, PET.getLong(_TIME,FIRST_TIME)-U);
+                    E.putLong(_NEXTTIME, new Date().getTime() + PET.getLong(_TIME, FIRST_TIME) - U);
+                    E.putLong(_TIME, PET.getLong(_TIME, FIRST_TIME) - U);
                     // AGE = (Сейчас-Родился) / 24 часа = {дни}
-                    E.putLong(_AGE, (new Date().getTime()-PET.getLong(_BURN,0))%(FIRST_TIME*2));
+                    E.putLong(_AGE, (new Date().getTime() - PET.getLong(_BURN, 0)) % (FIRST_TIME * 2));
                     E.apply();
 
                 }// Цикл
-
         });
 
-        events = new Thread((Runnable) () -> {
-                while(true){
-                    try {sleep(U*2);}
-                    catch (InterruptedException e) {e.printStackTrace();}
+        events = new Thread((Runnable) () ->
+        {
+                while (true) {
+                    try {
+                        sleep(U * 2);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
 
-                    if (random.nextInt(777)+1==777){
-                        // ВЫ выиграли в лотерею
-
+                    if (random.nextInt(777) + 1 == 777) {
+                        informer(String.valueOf(R.string.lottery));
+                        E = PET.edit();
+                        E.putLong(_MONEY, PET.getInt(_MONEY, 0) + 777);
+                        E.apply();
                     }
 
                     // Умри
                     if (isDie()) break;
                 }// Цикл
-
         });
 
        /* Я сказала, СТАРТУЕМ! */
@@ -97,13 +104,17 @@ public class Game extends Index{
     protected void onStart() {
         super.onStart();
 
+        // Сейчас > NEXTTIME
         while(new Date().getTime() > PET.getLong(_NEXTTIME,new Date().getTime())){
             E = PET.edit();
-            E.putInt(_STATUS_SLEEP, PET.getInt(_STATUS_SLEEP,new Random(5*2).nextInt(100))-random.nextInt(5));
-            E.putInt(_STATUS_HANGRY, PET.getInt(_STATUS_HANGRY,new Random(4*2).nextInt(100))-random.nextInt(4));
-            E.putInt(_STATUS_PLAY, PET.getInt(_STATUS_PLAY,new Random(3*2).nextInt(100))-random.nextInt(3));
-            E.putLong(_NEXTTIME, PET.getLong(_NEXTTIME, 0)+PET.getLong(_TIME,FIRST_TIME)-U);
+            /* Изменить СТАТУСЫ */
+            changeStatus(_STATUS_SLEEP, -random.nextInt(15));
+            changeStatus(_STATUS_HANGRY, -random.nextInt(14));
+            changeStatus(_STATUS_PLAY, -random.nextInt(13));
+            // TIME -= 3000
             E.putLong(_TIME, PET.getLong(_TIME,FIRST_TIME)-U);
+            // NEXTTIME += TIME (время разрыва)
+            E.putLong(_NEXTTIME, PET.getLong(_NEXTTIME, 0)+PET.getLong(_TIME,FIRST_TIME)-U);
             E.apply();
         }
 
@@ -123,6 +134,8 @@ public class Game extends Index{
             return true;
         }
         else{
+            gifView(R.id.PetView,"rip.png");
+            /* Записать рекорд */
             return false;
         }
     }
@@ -130,7 +143,17 @@ public class Game extends Index{
     /* Прогресс бар */
     protected void changeStatus(final String field, int x){
         E = PET.edit();
-        E.putInt(field, PET.getInt(field, x)+x);
+        if (PET.getInt(field,0)+x>100){E.putInt(field, 100);}
+        else{E.putInt(field, PET.getInt(field,0)+x);}
         E.apply();
+
+        ProgressBar bar = null;
+        if(field.equals(_STATUS_HANGRY)){bar = (ProgressBar) findViewById(R.id.status_hangry);}
+        else if(field.equals(_STATUS_SLEEP)){bar = (ProgressBar) findViewById(R.id.status_sleep);}
+        else if(field.equals(_STATUS_PLAY)){bar = (ProgressBar) findViewById(R.id.status_play);}
+
+        assert bar != null;
+        bar.setProgress(PET.getInt(field,0));
     }
+
 }

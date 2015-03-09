@@ -8,17 +8,18 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
+import android.widget.Toast;
 
 
 public class Index extends Activity {
     /* Найстройки: Основные */
     protected  static final String _PET = "PET";   // [String]  имя файла настройки [pet.xml]
     protected  static final String _NAME = "NAME"; // [String] Имя Питомца
-    protected  static final String _AGE = "AGE";  // Возраст питомца = время / (1000*60*60*24)  => [Кол-во часов]
+    protected  static final String _AGE = "AGE";  // Возраст питомца = время / (1000*60*60*24)  => [Кол-во дней]
     protected  static final String _NEXTTIME = "NEXTTIME";   // [long] Время следущего захода в милисекундах
     protected  static final String _MONEY = "MONEY"; // [int] Котобаксы
     protected  static final String _TIME = "TIME"; // Время усложнения = FIRST_TIME-(U*n) , где n - кол-во заходов
-    protected  static final String _BURN = "BURN";
+    protected  static final String _BURN = "BURN"; // Дата рождения
 
     protected SharedPreferences PET;
     protected SharedPreferences.Editor E;
@@ -56,11 +57,18 @@ public class Index extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void gifView(int R_id_webView,String drawable){
+    protected void gifView(int R_id_webView, String drawable){
         WebView gif; //Потому что gifDecode А) Черный-фон б)Позиционирование
         gif = (WebView) findViewById(R_id_webView);
         //webkit поддерживает <center>, так что не гунди
         String htmlText = "<html><body><center><img src='file:///android_res/drawable/"+drawable+"'/></center></body></html>";
         gif.loadDataWithBaseURL(null, htmlText, "text/html", "en_US", null);
+    }
+
+    public void informer(String text){
+        Toast toast = Toast.makeText(getApplicationContext(),
+                text,
+                Toast.LENGTH_LONG);
+        toast.show();
     }
 }

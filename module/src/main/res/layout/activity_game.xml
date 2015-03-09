@@ -14,8 +14,8 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Кличка"
             android:id="@+id/label_name"
-            android:layout_alignParentTop="true" android:layout_toRightOf="@+id/include4"
-            android:layout_toEndOf="@+id/include4" android:paddingTop="10px" android:paddingRight="10px"/>
+            android:layout_alignParentTop="true" android:layout_toRightOf="@+id/inc_sound"
+            android:layout_toEndOf="@+id/inc_sound" android:paddingTop="10px" android:paddingRight="10px"/>
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
               android:textAppearance="?android:attr/textAppearanceLarge" android:text="Возраст"
               android:id="@+id/label_age"
@@ -25,7 +25,7 @@
     <include android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              layout="@layout/sound"
-             android:id="@+id/include4"
+             android:id="@+id/inc_sound"
              android:layout_alignParentTop="true" android:layout_alignParentStart="true"/>
     <TextView
             android:layout_width="wrap_content"
@@ -66,36 +66,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Голод"
+            android:text="@string/hangry"
             android:id="@+id/textView"
             android:layout_alignParentBottom="true" android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" android:paddingRight="10dp"/>
     <ProgressBar style="?android:attr/progressBarStyleHorizontal" android:layout_width="wrap_content"
                  android:layout_height="wrap_content" android:progressDrawable="@drawable/statusbar"
-                 android:id="@+id/progressBar"
+                 android:id="@+id/status_hangry"
                  android:max="100" android:progress="42" android:indeterminate="false"
                  android:layout_alignParentBottom="true" android:layout_toRightOf="@+id/textView"
                  android:layout_alignParentRight="true" android:layout_alignParentEnd="true"/>
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:textAppearance="?android:attr/textAppearanceMedium" android:text="Счастье"
+              android:textAppearance="?android:attr/textAppearanceMedium" android:text="@string/play"
               android:id="@+id/textView14"
               android:paddingRight="10dp" android:layout_above="@+id/textView" android:layout_alignParentLeft="true"
               android:layout_alignParentStart="true"/>
     <ProgressBar style="?android:attr/progressBarStyleHorizontal" android:layout_width="wrap_content"
                  android:layout_height="wrap_content" android:progressDrawable="@drawable/statusbar"
-                 android:id="@+id/progressBar2" android:max="100" android:progress="42" android:indeterminate="false"
+                 android:id="@+id/status_play" android:max="100" android:progress="42" android:indeterminate="false"
                  android:layout_alignParentRight="true"
                  android:layout_alignParentEnd="true"
                  android:layout_toEndOf="@+id/textView14" android:layout_alignBottom="@+id/textView14"
                  android:layout_toRightOf="@+id/textView14"/>
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:textAppearance="?android:attr/textAppearanceMedium" android:text="Бодрость"
+              android:textAppearance="?android:attr/textAppearanceMedium" android:text="@string/sleep"
               android:id="@+id/textView15" android:paddingRight="10dp"
               android:layout_above="@+id/textView14" android:layout_alignParentLeft="true"
               android:layout_alignParentStart="true"/>
     <ProgressBar style="?android:attr/progressBarStyleHorizontal" android:layout_width="wrap_content"
                  android:layout_height="wrap_content" android:progressDrawable="@drawable/statusbar"
-                 android:id="@+id/progressBar3" android:max="100" android:progress="42" android:indeterminate="false"
+                 android:id="@+id/status_sleep" android:max="100" android:progress="42" android:indeterminate="false"
                  android:layout_alignBottom="@+id/textView15" android:layout_alignParentRight="true"
                  android:layout_alignParentEnd="true" android:layout_toRightOf="@+id/textView15"
                  android:layout_toEndOf="@+id/textView15"/>

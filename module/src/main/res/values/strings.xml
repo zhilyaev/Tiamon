@@ -15,4 +15,8 @@
     <string name="on">on</string>
     <string name="off">off</string>
     <string name="money">Catbucks</string>
+    <string name="hangry">Hangry</string>
+    <string name="play">Happy</string>
+    <string name="sleep">Сheerfulness</string>
+    <string name="lottery">You win in lottery 777 catbucks!</string>
 </resources>

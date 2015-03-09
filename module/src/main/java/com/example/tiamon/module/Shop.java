@@ -1,4 +1,4 @@
 package com.example.tiamon.module;
 
-public class Shop {
+class Shop {
 }

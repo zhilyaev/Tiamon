@@ -10,6 +10,7 @@ public class Main extends Index {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        gifView(R.id.webView,"cat_hissing.gif");
     }
 
     @Override

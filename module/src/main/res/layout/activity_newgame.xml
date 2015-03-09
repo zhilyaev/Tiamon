@@ -49,7 +49,7 @@
         <WebView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/GifHi"
+                android:id="@+id/gifhi"
                 android:layout_above="@+id/linearLayout" android:layout_centerHorizontal="true"/>
     </RelativeLayout>
 </LinearLayout>
