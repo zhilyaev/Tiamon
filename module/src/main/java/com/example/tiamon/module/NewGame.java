@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-import java.io.IOException;
+import java.util.Date;
 
 public class NewGame extends Index {
 
@@ -16,10 +16,11 @@ public class NewGame extends Index {
         gifView(R.id.GifHi,"cat_purr.gif");
     }
 
-    public void CreateGame(View view) throws IOException {
+    public void CreateGame(View view){
         final EditText name = (EditText) findViewById(R.id.editText);
         E = PET.edit();
         E.putString(_NAME, name.getText().toString());
+        E.putLong(_BURN, new Date().getTime());
         E.apply();
 
         startActivity(intent_game);

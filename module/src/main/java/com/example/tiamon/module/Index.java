@@ -18,11 +18,12 @@ public class Index extends Activity {
     protected  static final String _NEXTTIME = "NEXTTIME";   // [long] Время следущего захода в милисекундах
     protected  static final String _MONEY = "MONEY"; // [int] Котобаксы
     protected  static final String _TIME = "TIME"; // Время усложнения = FIRST_TIME-(U*n) , где n - кол-во заходов
+    protected  static final String _BURN = "BURN";
 
     protected SharedPreferences PET;
     protected SharedPreferences.Editor E;
     /* Переход Активностей */
-    protected Intent intent_newgame,intent_records,intent_game;
+    protected Intent intent_newgame,intent_records,intent_game,intent_about;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class Index extends Activity {
         intent_newgame = new Intent(this, NewGame.class);
         intent_records = new Intent(this, Records.class);
         intent_game = new Intent(this, Game.class);
+        intent_about = new Intent(this, About.class);
     }
 
     @Override

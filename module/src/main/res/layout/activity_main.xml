@@ -39,7 +39,8 @@
                     android:id="@+id/button" android:width="@dimen/menu_btn_width"
                     android:height="@dimen/menu_btn_height"
                     android:maxWidth="@dimen/menu_btn_width" android:enabled="true"
-                    android:layout_below="@+id/linearLayout2" android:layout_centerHorizontal="true"/>
+                    android:layout_below="@+id/linearLayout2" android:layout_centerHorizontal="true"
+                    />
         </LinearLayout>
         <include android:layout_width="wrap_content"
                  android:layout_height="wrap_content"

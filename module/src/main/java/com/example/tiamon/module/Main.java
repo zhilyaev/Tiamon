@@ -3,18 +3,13 @@ package com.example.tiamon.module;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
-
-import java.util.Date;
 
 public class Main extends Index {
-    static Date date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
     }
 
     @Override
@@ -42,8 +37,8 @@ public class Main extends Index {
         startActivity(intent_game);
     }
 
-    public void showDate(View view) {
-        Toast.makeText(this, String.valueOf(date.getTime()), Toast.LENGTH_LONG).show();
+    public void AboutActivity(View view) {
+        startActivity(intent_game);
     }
 
 }
