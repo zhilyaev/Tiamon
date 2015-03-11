@@ -19,5 +19,15 @@
     <string name="sleep">Бодрость</string>
     <string name="play">Счастье</string>
     <string name="lottery">Вы выиграли в лотерею 777 котобаксов!</string>
+    <string name="about_text">
+        <b>Таймон
+            <i>V 0.3.3</i>
+        </b>
+        \n Разработчик : Дмитрий Жиляев\n Композитор : Mr\n
+        - Никогда не любил Тамагочи
+    </string>
+    <string name="dummy_button">GODDAMN</string>
+    <string name="dummy_content">hOW realy these</string>
+    <string name="title_activity_about">О</string>
 
 </resources>

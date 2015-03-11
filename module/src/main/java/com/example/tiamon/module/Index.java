@@ -24,21 +24,19 @@ public class Index extends Activity {
     protected SharedPreferences PET;
     protected SharedPreferences.Editor E;
     /* Переход Активностей */
-    protected Intent intent_newgame,intent_records,intent_game,intent_about;
+    protected Intent intent_records,intent_game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Показать экран загрузки
-        setContentView(R.layout.activity_loading);
+        //setContentView(R.layout.activity_loading);
         //Toast.makeText(this, "Загрузочный экран", Toast.LENGTH_LONG).show();
-        gifView(R.id.LoadingGifView, "cat_walking.gif");
+        //gifView(R.id.LoadingGifView, "cat_walking.gif");
         // Определить переменные
         PET = getSharedPreferences(_PET, Context.MODE_PRIVATE);
-        intent_newgame = new Intent(this, NewGame.class);
         intent_records = new Intent(this, Records.class);
         intent_game = new Intent(this, Game.class);
-        intent_about = new Intent(this, About.class);
     }
 
     @Override

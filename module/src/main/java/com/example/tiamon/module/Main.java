@@ -1,16 +1,19 @@
 package com.example.tiamon.module;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 public class Main extends Index {
-
+    protected Intent intent_newgame,intent_o;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        gifView(R.id.webView,"cat_hissing.gif");
+        intent_newgame = new Intent(this, NewGame.class);
+        intent_o = new Intent(this, About.class);
     }
 
     @Override
@@ -38,8 +41,9 @@ public class Main extends Index {
         startActivity(intent_game);
     }
 
+    /* Переход в Активность: О Таймоне */
     public void AboutActivity(View view) {
-        startActivity(intent_game);
+        startActivity(intent_o);
     }
 
 }

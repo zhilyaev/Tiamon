@@ -1,9 +1,8 @@
 package com.example.tiamon.module;
 
-import android.app.Activity;
 import android.os.Bundle;
 
-public class Records extends Activity {
+public class Records extends Index {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

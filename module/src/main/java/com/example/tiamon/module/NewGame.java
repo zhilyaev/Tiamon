@@ -4,7 +4,6 @@ package com.example.tiamon.module;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-
 import java.util.Date;
 
 public class NewGame extends Index {
