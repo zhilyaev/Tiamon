@@ -33,10 +33,11 @@ public class Index extends Activity {
         //setContentView(R.layout.activity_loading);
         //Toast.makeText(this, "Загрузочный экран", Toast.LENGTH_LONG).show();
         //gifView(R.id.LoadingGifView, "cat_walking.gif");
+
         // Определить переменные
         PET = getSharedPreferences(_PET, Context.MODE_PRIVATE);
         intent_records = new Intent(this, Records.class);
-        intent_game = new Intent(this, Game.class);
+        intent_game = new Intent(this, Game_Zone.class);
     }
 
     @Override
@@ -48,7 +49,7 @@ public class Index extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        /* Переход в Активность: о Таймоне */
+        // Переход в Активность: о Таймоне */
         if (id == R.id.about) {
             return true;
         }
@@ -63,6 +64,7 @@ public class Index extends Activity {
         gif.loadDataWithBaseURL(null, htmlText, "text/html", "en_US", null);
     }
 
+    /* Свой тост */
     public void informer(String text){
         Toast toast = Toast.makeText(getApplicationContext(),
                 text,
