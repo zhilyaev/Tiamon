@@ -1,5 +1,7 @@
 <resources>
 
     <color name="black_overlay">#66000000</color>
-
+    <color name="black_back">#333333</color>
+    <color name="tiamon-light">#0099CC</color>
+    <color name="tiamon-dark">#0000FF</color>
 </resources>

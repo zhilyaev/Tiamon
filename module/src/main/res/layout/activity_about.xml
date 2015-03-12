@@ -2,7 +2,7 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             android:background="#0099cc"
+             android:background="#ffffff"
              tools:context="com.example.tiamon.module.About">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
@@ -41,6 +41,19 @@
                     android:text="@string/dummy_button"/>
 
         </LinearLayout>
+        <ImageView
+                android:layout_width="115dp"
+                android:layout_height="154dp"
+                android:id="@+id/imageView" android:layout_gravity="center_horizontal|top"
+                android:src="@drawable/ic_launcher_web"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/about_text"
+                android:textColor="#33b5e5"
+                android:textStyle="bold"
+                android:id="@+id/textView16" android:layout_gravity="center" android:gravity="center"/>
     </FrameLayout>
 
 </FrameLayout>
