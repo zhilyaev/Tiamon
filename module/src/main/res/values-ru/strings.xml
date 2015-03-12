@@ -1,5 +1,9 @@
 <resources>
-
+<!--
+ [Номенклатура]
+ - title_activity_имя-для-активности
+ - caption_button_id-имя-кнопки
+ -->
     <string name="action_settings">Настройки</string>
     <string name="app_name">Таймон</string>
     <string name="hello_world">Привет, Товарищ!</string>
@@ -26,7 +30,7 @@
         \n Разработчик : Дмитрий Жиляев\n Композитор : Mr\n
         - Никогда не любил Тамагочи
     </string>
-    <string name="dummy_button">GODDAMN</string>
+    <string name="dummy_button">GODDAMN BUTTON</string>
     <string name="dummy_content"></string>
     <string name="title_activity_about">О Таймоне</string>
 
