@@ -1,4 +1,4 @@
 package com.example.tiamon.module;
 
-public class Game_Zone {
+public class Game_Zone extends Index {
 }
