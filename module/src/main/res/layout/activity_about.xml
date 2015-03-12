@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/about_text"
-                android:textColor="@color/tiamon-dark"
+                android:textColor="@color/tiamon_light"
                 android:textStyle="bold"
                 android:id="@+id/textView16" android:layout_gravity="center" android:gravity="center"/>
     </FrameLayout>
