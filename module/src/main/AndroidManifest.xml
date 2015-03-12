@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="."
+            android:name=".Game_Zone"
             android:label="@string/app_name" />
         <activity
             android:name=".NewGame"
@@ -30,7 +30,8 @@
             android:name=".About"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_about"
-            android:theme="@style/FullscreenTheme" >
+            android:theme="@style/FullscreenTheme"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
