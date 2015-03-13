@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class Main extends Index {
-    protected Intent intent_newgame,intent_about;
+    protected Intent intent_newgame,intent_about, intent_list;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,8 @@ public class Main extends Index {
 
     /* Переход в Активность: О Таймоне */
     public void AboutActivity(View view) {
-        startActivity(intent_about);
+        intent_list = new Intent(this, ItemListActivity.class);
+        startActivity(intent_list);
     }
 
 }

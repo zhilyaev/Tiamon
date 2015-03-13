@@ -17,21 +17,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Game_Zone"
-            android:label="@string/app_name" />
-        <activity
-            android:name=".NewGame"
+        <activity android:name=".Game_Zone"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
+        <activity android:name=".NewGame"
             android:label="@string/new_game" />
-        <activity
-            android:name=".Records"
+        <activity android:name=".Records"
             android:label="@string/records" />
-        <activity
-            android:name=".About"
+        <activity android:name=".About"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_about"
-            android:theme="@style/FullscreenTheme"
-            android:screenOrientation="portrait">
+            android:theme="@style/FullscreenTheme" >
         </activity>
     </application>
 

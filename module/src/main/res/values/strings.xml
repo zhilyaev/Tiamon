@@ -27,5 +27,7 @@
     <string name="title_activity_about">About Tiamon</string>
     <string name="dummy_button">GODDAMN BUTTON</string>
     <string name="dummy_content"></string>
+    <string name="title_item_list">Items</string>
+    <string name="title_item_detail">Item Detail</string>
 
 </resources>
