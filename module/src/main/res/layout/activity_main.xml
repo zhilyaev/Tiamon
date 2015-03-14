@@ -11,7 +11,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/menu"
+                android:text="@string/label_menu"
                 android:id="@+id/TitleMenu"
                 android:layout_alignBottom="@+id/include5" android:layout_centerHorizontal="true"/>
         <LinearLayout
@@ -23,19 +23,19 @@
             <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/in_game"
+                    android:text="@string/action_continue"
                     android:id="@+id/menu_btn1" android:layout_centerHorizontal="true"
                     android:width="@dimen/menu_btn_width" android:layout_centerVertical="true" android:height="@dimen/menu_btn_height"
                     android:maxWidth="@dimen/menu_btn_width" android:onClick="GameActivity" android:enabled="true"/>
-            <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/new_game"
+            <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/title_activity_newgame"
                     android:id="@+id/menu_btn2" android:width="@dimen/menu_btn_width"
                     android:height="@dimen/menu_btn_height" android:layout_below="@+id/menu_btn1"
                     android:layout_centerHorizontal="true" android:onClick="NewGameActivity"/>
-            <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/records"
+            <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/title_activity_records"
                     android:id="@+id/menu_btn3" android:width="@dimen/menu_btn_width" android:height="@dimen/menu_btn_height"
                     android:layout_below="@+id/menu_btn2" android:layout_centerHorizontal="true"
                     android:onClick="RecordsActivity"/>
-            <Button android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/about"
+            <Button android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/title_activity_about"
                     android:id="@+id/button" android:width="@dimen/menu_btn_width"
                     android:height="@dimen/menu_btn_height"
                     android:maxWidth="@dimen/menu_btn_width" android:enabled="true"
