@@ -1,4 +1,4 @@
-package com.example.tiamon.module;
+package ru.diamon.tiamon;
 
 import android.app.Activity;
 import android.content.Context;

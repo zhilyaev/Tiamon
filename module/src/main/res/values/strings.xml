@@ -2,32 +2,41 @@
 <resources>
 
     <string name="app_name">Tiamon</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_main">Main</string>
-    <string name="in_game">Continue</string>
-    <string name="new_game">New game</string>
-    <string name="records">Records</string>
-    <string name="menu">Menu</string>
-    <string name="Pets_name">Pets Name</string>
-    <string name="Start_game">Start</string>
-    <string name="about">About Tiamon</string>
-    <string name="Loading">Loading</string>
-    <string name="on">on</string>
-    <string name="off">off</string>
-    <string name="money">Catbucks</string>
-    <string name="hangry">Hangry</string>
-    <string name="play">Happy</string>
-    <string name="sleep">Сheerfulness</string>
-    <string name="lottery">You win in lottery 777 catbucks!</string>
-    <string name="about_text"><b>Tiamon <i>V 0.3.3</i></b>\n
-        Developer : Dmitriy Zhilyaev\n
-        Musician : Mr\n
-        - something</string>
-    <string name="title_activity_about">About Tiamon</string>
-    <string name="dummy_button">GODDAMN BUTTON</string>
-    <string name="dummy_content"></string>
-    <string name="title_item_list">Items</string>
-    <string name="title_item_detail">Item Detail</string>
 
+    <!-- для Активностей -->
+    <string name="title_activity_main">Main</string>
+    <string name="title_activity_about">about Tiamon</string>
+    <string name="title_activity_loading">Loading...</string>
+
+    <!-- Для постоянных -->
+    <string name="label_menu">Menu</string>
+    <string name="label_petsname">Pets Name</string>
+    <string name="label_money">Catbucks</string>
+    <string name="label_hangry">Hangry</string>
+    <string name="label_sleep">Бодрость</string>
+    <string name="label_play">Happy</string>
+    <string name="label_about">
+        <b>Таймон
+            <i>V 0.3.3</i>
+        </b>
+        \n Разработчик : Дмитрий Жиляев\n Композитор : Mr\n
+        - Никогда не любил Тамагочи
+    </string>
+
+    <!-- Для кнопок и действий -->
+    <string name="action_continue">Continue</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_newgame">New game</string>
+    <string name="action_records">Records</string>
+    <string name="action_start_game">Start Game</string>
+
+    <!-- Для тугл-кнопок -->
+    <string name="toogle_sound_off">Sound off</string>
+    <string name="toogle_sound_on">Sound on</string>
+
+    <!-- Для событий информера -->
+    <string name="event_lottery">You have win in lottery 777 catbucks!</string>
+    <string name="event_mother">Mother present you 20 catbucks!</string>
+
+    <string name="dummy_button">GODDAMN BUTTON</string>
 </resources>

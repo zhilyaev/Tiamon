@@ -1,37 +1,43 @@
 <resources>
-<!--
- [Номенклатура]
- - title_activity_имя-для-активности
- - caption_button_id-имя-кнопки
- -->
-    <string name="action_settings">Настройки</string>
+
     <string name="app_name">Таймон</string>
-    <string name="hello_world">Привет, Товарищ!</string>
-    <string name="in_game">Продолжить</string>
+
+    <!-- для Активностей -->
     <string name="title_activity_main">Главный</string>
-    <string name="new_game">Новая игра</string>
-    <string name="records">Рекорды</string>
-    <string name="menu">Меню</string>
-    <string name="Pets_name">Кличка:</string>
-    <string name="Start_game">Начать игру</string>
-    <string name="about">О Таймоне</string>
-    <string name="Loading">Загрузка</string>
-    <string name="off">выкл</string>
-    <string name="on">вкл</string>
-    <string name="money">Котобаксы</string>
-    <string name="hangry">Голод</string>
-    <string name="sleep">Бодрость</string>
-    <string name="play">Счастье</string>
-    <string name="lottery">Вы выиграли в лотерею 777 котобаксов!</string>
-    <string name="about_text">
-        <b>Таймон
-            <i>V 0.3.3</i>
-        </b>
-        \n Разработчик : Дмитрий Жиляев\n Композитор : Mr\n
-        - Никогда не любил Тамагочи
-    </string>
-    <string name="dummy_button">GODDAMN BUTTON</string>
-    <string name="dummy_content"></string>
     <string name="title_activity_about">О Таймоне</string>
+    <string name="title_activity_loading">Загрузка...</string>
+
+    <!-- Для постоянных -->
+    <string name="label_menu">Меню</string>
+    <string name="label_petsname">Кличка:</string>
+    <string name="label_money">Котобаксы</string>
+    <string name="label_hangry">Голод</string>
+    <string name="label_sleep">Бодрость</string>
+    <string name="label_play">Счастье</string>
+    <string name="label_about">
+    <b>Таймон
+        <i>V 0.3.3</i>
+    </b>
+    \n Разработчик : Дмитрий Жиляев\n Композитор : Mr\n
+    - Никогда не любил Тамагочи
+   </string>
+
+    <!-- Для кнопок и действий -->
+    <string name="action_continue">Продолжить</string>
+    <string name="action_settings">Настройки</string>
+    <string name="action_newgame">Новая игра</string>
+    <string name="action_records">Рекорды</string>
+    <string name="action_start_game">Начать игру</string>
+
+    <!-- Для тугл-кнопок -->
+    <string name="toogle_sound_off">Звук выкл</string>
+    <string name="toogle_sound_on">Звук вкл</string>
+
+    <!-- Для событий информера -->
+    <string name="event_lottery">Вы выиграли в лотерею 777 котобаксов!</string>
+    <string name="event_mother">Сама мать Тереза Подаривала вам 20 котобаксов!</string>
+
+    <string name="dummy_button">GODDAMN BUTTON</string>
+
 
 </resources>

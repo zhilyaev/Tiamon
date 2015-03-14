@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/money"
+            android:text="@string/label_money"
             android:id="@+id/label_money"
             android:layout_below="@+id/label_age" android:layout_alignLeft="@+id/label_name"
             android:layout_alignStart="@+id/label_name"/>
@@ -66,7 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/hangry"
+            android:text="@string/label_hangry"
             android:id="@+id/textView"
             android:layout_alignParentBottom="true" android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" android:paddingRight="10dp"/>
@@ -77,7 +77,7 @@
                  android:layout_alignParentBottom="true" android:layout_toRightOf="@+id/textView"
                  android:layout_alignParentRight="true" android:layout_alignParentEnd="true"/>
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:textAppearance="?android:attr/textAppearanceMedium" android:text="@string/play"
+              android:textAppearance="?android:attr/textAppearanceMedium" android:text="@string/label_play"
               android:id="@+id/textView14"
               android:paddingRight="10dp" android:layout_above="@+id/textView" android:layout_alignParentLeft="true"
               android:layout_alignParentStart="true"/>
@@ -89,7 +89,7 @@
                  android:layout_toEndOf="@+id/textView14" android:layout_alignBottom="@+id/textView14"
                  android:layout_toRightOf="@+id/textView14"/>
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:textAppearance="?android:attr/textAppearanceMedium" android:text="@string/sleep"
+              android:textAppearance="?android:attr/textAppearanceMedium" android:text="@string/label_sleep"
               android:id="@+id/textView15" android:paddingRight="10dp"
               android:layout_above="@+id/textView14" android:layout_alignParentLeft="true"
               android:layout_alignParentStart="true"/>

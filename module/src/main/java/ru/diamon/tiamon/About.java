@@ -1,6 +1,4 @@
-package com.example.tiamon.module;
-
-import com.example.tiamon.module.util.SystemUiHider;
+package ru.diamon.tiamon;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -9,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import ru.diamon.tiamon.util.SystemUiHider;
 
 
 /**

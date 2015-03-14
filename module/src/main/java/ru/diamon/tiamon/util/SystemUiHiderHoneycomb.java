@@ -1,4 +1,4 @@
-package com.example.tiamon.module.util;
+package ru.diamon.tiamon.util;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

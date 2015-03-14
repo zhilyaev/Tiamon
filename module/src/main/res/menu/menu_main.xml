@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:tools="http://schemas.android.com/tools"
-      tools:context="com.example.tiamon.module.Main">
+      tools:context="ru.diamon.tiamon.Main">
 
     <item android:id="@+id/about" android:title="@string/about"/>
 </menu>
