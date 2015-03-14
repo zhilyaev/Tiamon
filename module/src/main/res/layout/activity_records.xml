@@ -8,7 +8,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                  android:textAppearance="?android:attr/textAppearanceLarge" android:text="@string/records"
+                  android:textAppearance="?android:attr/textAppearanceLarge" android:text="@string/title_activity_records"
                   android:id="@+id/textView3"
                   android:layout_gravity="center_horizontal"
                   android:layout_alignBottom="@+id/include2" android:layout_centerHorizontal="true"/>

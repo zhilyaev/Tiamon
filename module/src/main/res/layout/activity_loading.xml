@@ -11,13 +11,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/Loading"
+                android:text="@string/title_activity_loading"
                 android:id="@+id/TW_Loading"
-                android:layout_centerHorizontal="true" android:layout_centerVertical="true"/>
+                android:layout_above="@+id/LoadingGifView" android:layout_centerHorizontal="true"/>
         <WebView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/LoadingGifView" android:layout_below="@+id/TW_Loading"
-                android:layout_centerHorizontal="true"/>
+                android:id="@+id/LoadingGifView"
+                android:layout_centerVertical="true" android:layout_centerHorizontal="true"/>
     </RelativeLayout>
 </LinearLayout>

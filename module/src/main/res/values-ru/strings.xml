@@ -6,6 +6,8 @@
     <string name="title_activity_main">Главный</string>
     <string name="title_activity_about">О Таймоне</string>
     <string name="title_activity_loading">Загрузка...</string>
+    <string name="title_activity_newgame">Новая игра</string>
+    <string name="title_activity_records">Рекорды</string>
 
     <!-- Для постоянных -->
     <string name="label_menu">Меню</string>
@@ -25,8 +27,6 @@
     <!-- Для кнопок и действий -->
     <string name="action_continue">Продолжить</string>
     <string name="action_settings">Настройки</string>
-    <string name="action_newgame">Новая игра</string>
-    <string name="action_records">Рекорды</string>
     <string name="action_start_game">Начать игру</string>
 
     <!-- Для тугл-кнопок -->
