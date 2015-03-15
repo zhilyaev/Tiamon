@@ -2,5 +2,5 @@
       xmlns:tools="http://schemas.android.com/tools"
       tools:context="ru.diamon.tiamon.Main">
 
-    <item android:id="@+id/about" android:title="@string/about"/>
+    <item android:id="@+id/about" android:title="@string/title_activity_about"/>
 </menu>

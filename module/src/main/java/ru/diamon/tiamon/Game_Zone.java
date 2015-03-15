@@ -85,7 +85,7 @@ protected final String _SHOP_FISH = "FISH";*/
                 }
 
                 if (random.nextInt(777) + 1 == 777) {
-                    informer(String.valueOf(R.string.lottery));
+                    informer(String.valueOf(R.string.event_lottery));
                     E = PET.edit();
                     E.putLong(_MONEY, PET.getInt(_MONEY, 0) + 777);
                     E.apply();

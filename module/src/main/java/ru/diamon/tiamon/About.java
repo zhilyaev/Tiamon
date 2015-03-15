@@ -9,13 +9,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import ru.diamon.tiamon.util.SystemUiHider;
 
-
-/**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
- *
- * @see SystemUiHider
- */
 public class About extends Activity {
     /**
      * Whether or not the system UI should be auto-hidden after

@@ -21,9 +21,9 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity android:name=".NewGame"
-            android:label="@string/new_game" />
+            android:label="@string/title_activity_newgame" />
         <activity android:name=".Records"
-            android:label="@string/records" />
+            android:label="@string/title_activity_records" />
         <activity android:name=".About"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_about"
