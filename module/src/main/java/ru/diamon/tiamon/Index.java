@@ -9,21 +9,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
 import android.widget.Toast;
+import ru.diamon.tiamon.util.FieBasic;
 
 
-public class Index extends Activity {
-    /* Найстройки: Основные */
-    protected  static final String _PET = "PET";   // [String]  имя файла настройки [pet.xml]
-    protected  static final String _NAME = "NAME"; // [String] Имя Питомца
-    protected  static final String _AGE = "AGE";  // Возраст питомца = время / (1000*60*60*24)  => [Кол-во дней]
-    protected  static final String _NEXTTIME = "NEXTTIME";   // [long] Время следущего захода в милисекундах
-    protected  static final String _MONEY = "MONEY"; // [int] Котобаксы
-    protected  static final String _TIME = "TIME"; // Время усложнения = FIRST_TIME-(U*n) , где n - кол-во заходов
-    protected  static final String _BURN = "BURN"; // Дата рождения
+public class Index extends Activity implements FieBasic {
 
     protected SharedPreferences PET;
     protected SharedPreferences.Editor E;
-    /* Переход Активностей */
     protected Intent intent_records,intent_game;
 
     @Override
@@ -36,6 +28,7 @@ public class Index extends Activity {
 
         // Определить переменные
         PET = getSharedPreferences(_PET, Context.MODE_PRIVATE);
+
         intent_records = new Intent(this, Records.class);
         intent_game = new Intent(this, Game_Zone.class);
     }
