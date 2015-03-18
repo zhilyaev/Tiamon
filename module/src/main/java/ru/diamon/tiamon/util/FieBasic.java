@@ -8,4 +8,7 @@ public interface FieBasic {
    final String _MONEY = "MONEY"; // [int] Котобаксы
    final String _TIME = "TIME"; // Время усложнения = FIRST_TIME-(U*n) , где n - кол-во заходов
    final String _BURN = "BURN"; // Дата рождения
+    final String _LAST = "LAST"; // Время закрытия
+    final String _VIRGIN = "VIRGIN"; // Если девственник
+
 }

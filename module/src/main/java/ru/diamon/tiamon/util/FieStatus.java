@@ -5,4 +5,5 @@ public interface FieStatus {
     final String _status_HANGRY = "HANGRY";
     final String _status_SLEEP = "SLEEP";
     final String _status_PLAY = "PLAY";
+    final String _status_LIVE = "LIVE";
 }

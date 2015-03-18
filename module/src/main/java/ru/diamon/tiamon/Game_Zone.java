@@ -10,105 +10,59 @@ import ru.diamon.tiamon.util.FieStatus;
 import java.util.Date;
 import java.util.Random;
 
-import static java.lang.Thread.sleep;
-
 public class Game_Zone extends Index implements FieStatus {
 
-    protected TextView TV_age, TV_name;
+    protected TextView TV_age, TV_name,TV_catbucks;
     protected Intent intent_shop;
     protected static Thread T,events;
     protected static Random random;
     protected final int U = 3000;
-    protected final int FIRST_TIME = 1000*60*60*12;
+    //protected final int FIRST_TIME = 1000*60*60*12;
+    protected final int FIRST_TIME = 12000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+        random = new Random();
 
         TV_name = (TextView) findViewById(R.id.label_name);
         TV_age = (TextView) findViewById(R.id.label_age);
+        TV_catbucks = (TextView) findViewById(R.id.catbucks);
+
+        // Ты у меня первый
+        if (PET.getBoolean(_VIRGIN, false)){
+            E = PET.edit();
+            E.putLong(_NEXTTIME, new Date().getTime()+FIRST_TIME);
+            E.putLong(_TIME, FIRST_TIME-U);
+            E.putInt(_MONEY, 500);
+            E.putInt(_AGE, 0);
+            E.putInt(_status_SLEEP,42 + random.nextInt(42));
+            E.putInt(_status_PLAY,42 + random.nextInt(42));
+            E.putInt(_status_HANGRY,42 + random.nextInt(42));
+            E.putBoolean(_VIRGIN, false);
+            E.apply();
+        }
+
+        changeStatus(_status_SLEEP,0);
+        changeStatus(_status_PLAY,0);
+        changeStatus(_status_HANGRY,0);
+
         TV_name.setText(PET.getString(_NAME, ""));
-        TV_age.setText(PET.getString(_AGE, ""));
-        random = new Random(10);
-    }
-
-    protected void live(){
-
-        T = new Thread((Runnable) () -> {
-            while (true) {
-                try {sleep(PET.getLong(_NEXTTIME, FIRST_TIME));}
-                catch (InterruptedException e) {e.printStackTrace();}
-
-                changeStatus(_status_SLEEP, -random.nextInt(15));
-                changeStatus(_status_HANGRY, -random.nextInt(14));
-                changeStatus(_status_PLAY, -random.nextInt(13));
-
-                if (isDie()) break;
-
-                /* Время на Следущий заход */
-                E = PET.edit();
-                // NEXTTIME = Сейчас + Время разрыва
-                E.putLong(_NEXTTIME, new Date().getTime() + PET.getLong(_TIME, FIRST_TIME) - U);
-                E.putLong(_TIME, PET.getLong(_TIME, FIRST_TIME) - U);
-                // AGE = (Сейчас-Родился) / 24 часа = {дни}
-                E.putLong(_AGE, (new Date().getTime() - PET.getLong(_BURN, 0)) % (FIRST_TIME * 2));
-                E.apply();
-
-            }// Цикл
-        });
-
-        events = new Thread((Runnable) () ->
-        {
-            while (true) {
-                try {
-                    sleep(U * 2);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                if (random.nextInt(777) + 1 == 777) {
-                    informer(String.valueOf(R.string.event_lottery));
-                    E = PET.edit();
-                    E.putLong(_MONEY, PET.getInt(_MONEY, 0) + 777);
-                    E.apply();
-                }
-
-                if (isDie()) break;
-            }// Цикл
-        });
-
-        /* Я сказала, СТАРТУЕМ! */
-        T.start();
-        events.start();
+        TV_age.setText(String.valueOf(PET.getInt(_AGE, 0)));
+        TV_catbucks.setText(String.valueOf(PET.getInt(_MONEY, 500)));
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        // Сейчас > NEXTTIME
-        while(new Date().getTime() > PET.getLong(_NEXTTIME,new Date().getTime())){
-            E = PET.edit();
-            changeStatus(_status_SLEEP, -random.nextInt(15));
-            changeStatus(_status_HANGRY, -random.nextInt(14));
-            changeStatus(_status_PLAY, -random.nextInt(13));
-            // TIME -= 3000
-            int FIRST_TIME = 1000 * 60 * 60 * 12;
-            int u = 1000 * 3;
-            E.putLong(_TIME, PET.getLong(_TIME, FIRST_TIME)- u);
-            // NEXTTIME += TIME (время разрыва)
-            E.putLong(_NEXTTIME, PET.getLong(_NEXTTIME, 0)+PET.getLong(_TIME, FIRST_TIME)- u);
-            E.apply();
-        }
-
-        if (!isDie()) live(); // Спасибо, что живой!
-
     }
 
-    protected void shopActivity(View view){
+    public void shopActivity(View view){
         //intent_shop = new Intent(this,Shop.class);
-        startActivity(intent_shop);
+        //startActivity(intent_shop);
+        changeStatus(_status_HANGRY,-10);
     }
 
     /* Если уже мертв */
@@ -131,19 +85,26 @@ public class Game_Zone extends Index implements FieStatus {
         E.apply();
 
         ProgressBar bar = null;
+        TextView TV = null;
         switch (field) {
             case _status_HANGRY:
                 bar = (ProgressBar) findViewById(R.id.status_hangry);
+                TV = (TextView) findViewById(R.id.TV_hangry);
                 break;
             case _status_SLEEP:
                 bar = (ProgressBar) findViewById(R.id.status_sleep);
+                TV = (TextView) findViewById(R.id.TV_sleep);
                 break;
             case _status_PLAY:
                 bar = (ProgressBar) findViewById(R.id.status_play);
+                TV = (TextView) findViewById(R.id.TV_play);
                 break;
         }
 
         assert bar != null;
+        assert TV != null;
+
+        TV.setText(String.valueOf(PET.getInt(field,0)));
         bar.setProgress(PET.getInt(field,0));
     }
 }

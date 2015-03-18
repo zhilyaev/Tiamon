@@ -21,6 +21,7 @@ public class NewGame extends Index {
         E = PET.edit();
         E.putString(_NAME, name.getText().toString());
         E.putLong(_BURN, new Date().getTime());
+        E.putBoolean(_VIRGIN,true);
         E.apply();
 
         startActivity(intent_game);
