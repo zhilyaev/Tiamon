@@ -3,108 +3,100 @@ package ru.diamon.tiamon;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebView;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import ru.diamon.tiamon.util.FieStatus;
 
 import java.util.Date;
 import java.util.Random;
 
-public class Game_Zone extends Index implements FieStatus {
+public class Game_Zone extends Index {
 
-    protected TextView TV_age, TV_name,TV_catbucks;
-    protected Intent intent_shop;
-    protected static Thread T,events;
-    protected static Random random;
-    protected final int U = 3000;
+    TextView TV_age, TV_name,TV_catbucks;
+    ImageButton btn_shop;
+    ImageView ripView;
+    Intent intent_shop;
+    Thread live;
+    WebView petView;
+
+    static Random random;
+    final int U = 3000;
+    int _status_HANGRY,_status_SLEEP,_status_PLAY;
     //protected final int FIRST_TIME = 1000*60*60*12;
-    protected final int FIRST_TIME = 12000;
+    final int FIRST_TIME = 12000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         random = new Random();
+        loadPet();
 
+        petView = (WebView) findViewById(R.id.PetView);
         TV_name = (TextView) findViewById(R.id.label_name);
         TV_age = (TextView) findViewById(R.id.label_age);
         TV_catbucks = (TextView) findViewById(R.id.catbucks);
+        btn_shop = (ImageButton) findViewById(R.id.btn_shop);
+        ripView = (ImageView) findViewById(R.id.rip);
 
-        // Ты у меня первый
-        if (PET.getBoolean(_VIRGIN, false)){
-            E = PET.edit();
-            E.putLong(_NEXTTIME, new Date().getTime()+FIRST_TIME);
-            E.putLong(_TIME, FIRST_TIME-U);
-            E.putInt(_MONEY, 500);
-            E.putInt(_AGE, 0);
-            E.putInt(_status_SLEEP,42 + random.nextInt(42));
-            E.putInt(_status_PLAY,42 + random.nextInt(42));
-            E.putInt(_status_HANGRY,42 + random.nextInt(42));
-            E.putBoolean(_VIRGIN, false);
-            E.apply();
-        }
-
-        changeStatus(_status_SLEEP,0);
-        changeStatus(_status_PLAY,0);
-        changeStatus(_status_HANGRY,0);
-
-        TV_name.setText(PET.getString(_NAME, ""));
-        TV_age.setText(String.valueOf(PET.getInt(_AGE, 0)));
-        TV_catbucks.setText(String.valueOf(PET.getInt(_MONEY, 500)));
+        btn_shop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(intent_shop);
+            }
+        });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-    }
+        if(!_VIRGIN){
+            // Вместо цикла
+            // Сумма Отниманий  = (S + 2d-4f) / (2d) * 5
+            long csum = (((new Date().getTime()-_LAST)+2*U-4*FIRST_TIME) / (2*U)) * random.nextInt(5);
 
-    public void shopActivity(View view){
-        //intent_shop = new Intent(this,Shop.class);
-        //startActivity(intent_shop);
-        changeStatus(_status_HANGRY,-10);
-    }
-
-    /* Если уже мертв */
-    protected boolean isDie(){
-        if (PET.getInt(_status_PLAY,0)==0 || PET.getInt(_status_HANGRY,0)==0 || PET.getInt(_status_SLEEP,0)==0){
-            return true;
-        }
-        else{
-            gifView(R.id.PetView,"rip.png");
-            // Записать рекорд */
-            return false;
-        }
-    }
-
-    /* Прогресс бар */
-    protected void changeStatus(final String field, int x){
-        E = PET.edit();
-        if (PET.getInt(field,0)+x>100){E.putInt(field, 100);}
-        else{E.putInt(field, PET.getInt(field,0)+x);}
-        E.apply();
-
-        ProgressBar bar = null;
-        TextView TV = null;
-        switch (field) {
-            case _status_HANGRY:
-                bar = (ProgressBar) findViewById(R.id.status_hangry);
-                TV = (TextView) findViewById(R.id.TV_hangry);
-                break;
-            case _status_SLEEP:
-                bar = (ProgressBar) findViewById(R.id.status_sleep);
-                TV = (TextView) findViewById(R.id.TV_sleep);
-                break;
-            case _status_PLAY:
-                bar = (ProgressBar) findViewById(R.id.status_play);
-                TV = (TextView) findViewById(R.id.TV_play);
-                break;
+            _status_HANGRY -= csum;
+            _status_SLEEP -= csum;
+            _status_PLAY -= csum;
         }
 
-        assert bar != null;
-        assert TV != null;
+        upStatus();
 
-        TV.setText(String.valueOf(PET.getInt(field,0)));
-        bar.setProgress(PET.getInt(field,0));
+        TV_name.setText(_NAME);
+        TV_age.setText(String.valueOf(_AGE));
+        TV_catbucks.setText(String.valueOf(_MONEY));
+
+        new Thread((Runnable) ()-> {
+            while(true){
+
+            }
+        }).start();
+    }
+
+    @Override
+    public void loadPet() {
+        super.loadPet();
+        _status_HANGRY = PET.getInt("HANGRY",0);
+        _status_SLEEP = PET.getInt("SLEEP",0);
+        _status_PLAY = PET.getInt("PLAY",0);
+    }
+
+    public void upStatus(){
+        ProgressBar sleep = (ProgressBar) findViewById(R.id.status_sleep);
+        ProgressBar play = (ProgressBar) findViewById(R.id.status_play);
+        ProgressBar hangry = (ProgressBar) findViewById(R.id.status_hangry);
+
+        sleep.setProgress(_status_SLEEP);
+        play.setProgress(_status_PLAY);
+        hangry.setProgress(_status_HANGRY);
+
+        if(_status_HANGRY<=0 ||_status_SLEEP<=0 ||_status_PLAY<=0){
+            petView.setEnabled(false);
+            btn_shop.setEnabled(false);
+            ripView.setVisibility(View.VISIBLE);
+        }
     }
 }

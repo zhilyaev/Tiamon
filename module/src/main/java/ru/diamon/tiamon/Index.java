@@ -9,26 +9,25 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
 import android.widget.Toast;
-import ru.diamon.tiamon.util.FieBasic;
+
+import java.util.Date;
 
 
-public class Index extends Activity implements FieBasic {
+public class Index extends Activity {
 
     protected SharedPreferences PET;
     protected SharedPreferences.Editor E;
     protected Intent intent_records,intent_game;
 
+    String _NAME;
+    boolean _VIRGIN;
+    int _AGE,_HARD,_MONEY;
+    long _LAST,_NEXT,_BIRTH;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Показать экран загрузки
-        //setContentView(R.layout.activity_loading);
-        //Toast.makeText(this, "Загрузочный экран", Toast.LENGTH_LONG).show();
-        //gifView(R.id.LoadingGifView, "cat_walking.gif");
-
-        // Определить переменные
-        PET = getSharedPreferences(_PET, Context.MODE_PRIVATE);
-
+        loadPet();
         intent_records = new Intent(this, Records.class);
         intent_game = new Intent(this, Game_Zone.class);
     }
@@ -37,6 +36,12 @@ public class Index extends Activity implements FieBasic {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        savePet();
     }
 
     @Override
@@ -49,7 +54,7 @@ public class Index extends Activity implements FieBasic {
         return super.onOptionsItemSelected(item);
     }
 
-    protected void gifView(int R_id_webView, String drawable){
+    protected final void gifView(int R_id_webView, String drawable){
         WebView gif; //Потому что gifDecode А) Черный-фон б)Позиционирование
         gif = (WebView) findViewById(R_id_webView);
         //webkit поддерживает <center>, так что не гунди
@@ -57,11 +62,29 @@ public class Index extends Activity implements FieBasic {
         gif.loadDataWithBaseURL(null, htmlText, "text/html", "en_US", null);
     }
 
-    /* Свой тост */
-    public void informer(String text){
+    public void showMessage(String text){
         Toast toast = Toast.makeText(getApplicationContext(),
                 text,
                 Toast.LENGTH_LONG);
         toast.show();
+    }
+
+    public void savePet(){
+        E = PET.edit();
+        E.putInt("AGE",_AGE);
+        E.putLong("LAST",new Date().getTime());
+        E.apply();
+    }
+
+    public void loadPet(){
+        PET = getSharedPreferences("PET", Context.MODE_PRIVATE);
+        _NAME = PET.getString("NAME", "Tiamon");
+        _AGE = PET.getInt("AGE", 0);
+        _LAST = PET.getLong("LAST", 0);
+        _NEXT = PET.getLong("NEXT", 0);
+        _BIRTH = PET.getLong("BIRTH", 0);
+        _HARD = PET.getInt("HARD", 0);
+        _MONEY = PET.getInt("MONEY",0);
+        _VIRGIN = PET.getBoolean("VIRGIN",true);
     }
 }

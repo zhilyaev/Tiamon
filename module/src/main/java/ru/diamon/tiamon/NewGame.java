@@ -18,10 +18,11 @@ public class NewGame extends Index {
 
     public void CreateGame(View view){
         final EditText name = (EditText) findViewById(R.id.editText);
+
         E = PET.edit();
-        E.putString(_NAME, name.getText().toString());
-        E.putLong(_BURN, new Date().getTime());
-        E.putBoolean(_VIRGIN,true);
+        E.putString("NAME", name.getText().toString());
+        E.putLong("BIRTH", new Date().getTime());
+        E.putBoolean("VIRGIN",false);
         E.apply();
 
         startActivity(intent_game);

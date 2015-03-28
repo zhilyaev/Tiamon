@@ -19,8 +19,8 @@ public class Main extends Index {
     @Override
     protected void onStart() {
         super.onStart();
-        if (!PET.contains(_NAME)) {
-            // Если файл не создан, то кнопку "продолжить" диактивировать
+        if (_VIRGIN) {
+            // кнопку "продолжить" диактивировать
             Button menu_btn1 = (Button) findViewById(R.id.menu_continue);
             menu_btn1.setEnabled(false);
         }
