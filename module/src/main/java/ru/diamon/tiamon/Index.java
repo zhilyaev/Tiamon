@@ -28,8 +28,7 @@ public class Index extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         loadPet();
-        intent_records = new Intent(this, Records.class);
-        intent_game = new Intent(this, Game_Zone.class);
+        initialization();
     }
 
     @Override
@@ -47,7 +46,6 @@ public class Index extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        // Переход в Активность: о Таймоне */
         if (id == R.id.about) {
             return true;
         }
@@ -71,8 +69,8 @@ public class Index extends Activity {
 
     public void savePet(){
         E = PET.edit();
-        E.putInt("AGE",_AGE);
-        E.putLong("LAST",new Date().getTime());
+        E.putInt("AGE", _AGE);
+        E.putLong("LAST", new Date().getTime());
         E.apply();
     }
 
@@ -86,5 +84,10 @@ public class Index extends Activity {
         _HARD = PET.getInt("HARD", 0);
         _MONEY = PET.getInt("MONEY",0);
         _VIRGIN = PET.getBoolean("VIRGIN",true);
+    }
+
+    public void initialization(){
+        intent_records = new Intent(this, Records.class);
+        intent_game = new Intent(this, Game_Zone.class);
     }
 }
