@@ -90,6 +90,10 @@ public class Game_Zone extends Index {
     protected void onStart() {
         super.onStart();
 
+        TV_name.setText(_NAME);
+        TV_age.setText(String.valueOf(_AGE));
+        TV_catbucks.setText(String.valueOf(_MONEY));
+
         if(!_VIRGIN){
             // Сумма Отниманий  = (S + 2d-4f) / (2d) * 5
             long csum = (((new Date().getTime()-_LAST)+2*U-4*FIRST_TIME) / (2*U)) * random.nextInt(5);
@@ -98,23 +102,16 @@ public class Game_Zone extends Index {
             _status_SLEEP -= csum;
             _status_PLAY -= csum;
         }
-
         upStatus();
-
-        TV_name.setText(_NAME);
-        TV_age.setText(String.valueOf(_AGE));
-        TV_catbucks.setText(String.valueOf(_MONEY));
-
         life.start();
-
     }
 
     @Override
     public void loadPet() {
         super.loadPet();
-        _status_HANGRY = PET.getInt("HANGRY",0);
-        _status_SLEEP  = PET.getInt("SLEEP",0);
-        _status_PLAY   = PET.getInt("PLAY",0);
+        _status_HANGRY = PET.getInt("HANGRY",random.nextInt(42));
+        _status_SLEEP  = PET.getInt("SLEEP",random.nextInt(42));
+        _status_PLAY   = PET.getInt("PLAY",random.nextInt(42));
     }
 
     @Override

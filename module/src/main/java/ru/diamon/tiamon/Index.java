@@ -27,8 +27,8 @@ public class Index extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loadPet();
         initialization();
+        loadPet();
     }
 
     @Override
@@ -40,6 +40,12 @@ public class Index extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
+        savePet();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
         savePet();
     }
 
@@ -82,7 +88,7 @@ public class Index extends Activity {
         _NEXT = PET.getLong("NEXT", 0);
         _BIRTH = PET.getLong("BIRTH", 0);
         _HARD = PET.getInt("HARD", 0);
-        _MONEY = PET.getInt("MONEY",0);
+        _MONEY = PET.getInt("MONEY",500);
         _VIRGIN = PET.getBoolean("VIRGIN",true);
     }
 
