@@ -8,11 +8,19 @@ import ru.diamon.tiamon.util.Index;
 
 public class Main extends Index {
     protected Intent intent_newgame,intent_about;
+    private Button btn_continue;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        btn_continue = (Button) findViewById(R.id.menu_continue);
+        btn_continue.setOnClickListener(view -> startActivity(intent_game));
+    }
+
+    @Override
+    public void initialization() {
+        super.initialization();
         intent_newgame = new Intent(this, NewGame.class);
         intent_about = new Intent(this, About.class);
     }
@@ -25,11 +33,7 @@ public class Main extends Index {
     @Override
     protected void onStart() {
         super.onStart();
-        if (_VIRGIN) {
-            // кнопку "продолжить" диактивировать
-            Button menu_btn1 = (Button) findViewById(R.id.menu_continue);
-            menu_btn1.setEnabled(false);
-        }
+        if (!isContinue) { btn_continue.setEnabled(false); }
     }
 
     /* Переход в Активность: Новая Игра */
@@ -40,11 +44,6 @@ public class Main extends Index {
     /* Переход в Активность: Рекорды */
     public void RecordsActivity(View view) {
         startActivity(intent_records);
-    }
-
-    /* Переход в Активность: Игра */
-    public void GameActivity(View view) {
-        startActivity(intent_game);
     }
 
     /* Переход в Активность: О Таймоне */

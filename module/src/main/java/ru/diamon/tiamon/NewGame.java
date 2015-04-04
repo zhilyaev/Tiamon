@@ -24,7 +24,7 @@ public class NewGame extends Index {
         E = PET.edit();
         E.putString("NAME", name.getText().toString());
         E.putLong("BIRTH", new Date().getTime());
-        E.putBoolean("VIRGIN",false);
+        E.putBoolean("isGame",true);
         E.apply();
     }
 
