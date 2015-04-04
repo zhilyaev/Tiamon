@@ -73,7 +73,7 @@ public class Game_Zone extends Index {
 
         life = new Thread((Runnable) ()->{
             do {
-                try {Thread.sleep(600);}
+                try {Thread.sleep(_HARD);}
                 catch (InterruptedException e) {System.out.println("thread error");}
 
                 _status_PLAY -= random.nextInt(10);
@@ -149,15 +149,15 @@ public class Game_Zone extends Index {
         bar_hangry.setProgress(_status_HANGRY);
 
         if(_status_HANGRY<=0 ||_status_SLEEP<=0 ||_status_PLAY<=0){
-            savePet();
             die=true;
             h.post((Runnable) ()->{
                 petView.setEnabled(false);
                 ripView.setVisibility(View.VISIBLE);
             });
-
+            // Удалить текущую игру
             File file = new File("/data/data/ru.diamon.tiamon/shared_prefs/pet.xml");
             file.delete();
         }
+        savePet();
     }
 }

@@ -66,7 +66,7 @@ public class Index extends Activity {
         gif.loadDataWithBaseURL(null, htmlText, "text/html", "en_US", null);
     }
 
-    public void showMessage(String text){
+    public void showMsg(String text){
         Toast toast = Toast.makeText(getApplicationContext(),
                 text,
                 Toast.LENGTH_LONG);
@@ -82,14 +82,16 @@ public class Index extends Activity {
 
     public void loadPet(){
         PET = getSharedPreferences("PET", Context.MODE_PRIVATE);
+        // <Fixed>
         _NAME = PET.getString("NAME", "Tiamon");
+        _BIRTH = PET.getLong("BIRTH", 0);
+        _VIRGIN = PET.getBoolean("VIRGIN",true);
+
         _AGE = PET.getInt("AGE", 0);
         _LAST = PET.getLong("LAST", 0);
         _NEXT = PET.getLong("NEXT", 0);
-        _BIRTH = PET.getLong("BIRTH", 0);
         _HARD = PET.getInt("HARD", 0);
         _MONEY = PET.getInt("MONEY",500);
-        _VIRGIN = PET.getBoolean("VIRGIN",true);
     }
 
     public void initialization(){
