@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import ru.diamon.tiamon.util.Index;
 
 public class Main extends Index {
     protected Intent intent_newgame,intent_about;
@@ -14,6 +15,11 @@ public class Main extends Index {
         setContentView(R.layout.activity_main);
         intent_newgame = new Intent(this, NewGame.class);
         intent_about = new Intent(this, About.class);
+    }
+
+    @Override
+    public void savePet() {
+
     }
 
     @Override

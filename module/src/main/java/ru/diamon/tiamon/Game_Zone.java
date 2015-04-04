@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import ru.diamon.tiamon.util.Index;
 
 import java.io.File;
 import java.util.Date;
@@ -24,14 +25,13 @@ public class Game_Zone extends Index {
     ProgressBar bar_sleep,bar_play,bar_hangry;
     WebView petView;
     Thread life;
-    Runnable upLayout;
-    boolean die = false;
-
     static Random random;
+
     final int U = 3000;
+    boolean die = false;
     int _status_HANGRY,_status_SLEEP,_status_PLAY;
     //protected final int FIRST_TIME = 1000*60*60*12;
-    final int FIRST_TIME = 6000;
+    final int FIRST_TIME = 12000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +68,7 @@ public class Game_Zone extends Index {
         };
 
         btn_shop.setOnClickListener(view -> startActivity(intent_shop));
+        ripView.setOnClickListener(view -> showMsg("Один прогиб и ты погиб"));
 
         h = new Handler();
 
@@ -75,10 +76,11 @@ public class Game_Zone extends Index {
             do {
                 try {Thread.sleep(_HARD);}
                 catch (InterruptedException e) {System.out.println("thread error");}
-
                 _status_PLAY -= random.nextInt(10);
                 _status_HANGRY -= random.nextInt(10);
                 _status_SLEEP -= random.nextInt(10);
+
+                _HARD -= U;
 
                 upStatus();
 
@@ -109,14 +111,19 @@ public class Game_Zone extends Index {
     @Override
     public void loadPet() {
         super.loadPet();
-        _status_HANGRY = PET.getInt("HANGRY",random.nextInt(42));
-        _status_SLEEP  = PET.getInt("SLEEP",random.nextInt(42));
-        _status_PLAY   = PET.getInt("PLAY",random.nextInt(42));
+        _status_HANGRY = PET.getInt("HANGRY",random.nextInt(84));
+        _status_SLEEP  = PET.getInt("SLEEP",random.nextInt(84));
+        _status_PLAY   = PET.getInt("PLAY",random.nextInt(84));
+
+        _AGE = PET.getInt("AGE", 0);
+        _LAST = PET.getLong("LAST", 0);
+        //_NEXT = PET.getLong("NEXT", 0);
+        _HARD = PET.getInt("HARD", FIRST_TIME);
+        _MONEY = PET.getInt("MONEY",500);
     }
 
     @Override
     public void savePet() {
-        super.savePet();
         E = PET.edit();
         E.putInt("HANGRY",_status_HANGRY);
         E.putInt("SLEEP",_status_SLEEP);
@@ -127,7 +134,7 @@ public class Game_Zone extends Index {
     @Override
     public void initialization() {
         super.initialization();
-        random = new Random();
+        random = new Random(42);
     }
 
     public void upStatus(){
@@ -151,12 +158,15 @@ public class Game_Zone extends Index {
         if(_status_HANGRY<=0 ||_status_SLEEP<=0 ||_status_PLAY<=0){
             die=true;
             h.post((Runnable) ()->{
-                petView.setEnabled(false);
+                //petView.setEnabled(false);
                 ripView.setVisibility(View.VISIBLE);
             });
             // Удалить текущую игру
-            File file = new File("/data/data/ru.diamon.tiamon/shared_prefs/pet.xml");
+            File file = new File("/data/data/ru.diamon.tiamon/shared_prefs/PET.xml");
             file.delete();
+            file = new File ("/data/data/ru.diamon.tiamon/shared_prefs/PET.bak");
+            if (file.exists()){file.delete();}
+
         }
         savePet();
     }

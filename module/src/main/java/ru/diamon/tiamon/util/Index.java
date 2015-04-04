@@ -1,4 +1,4 @@
-package ru.diamon.tiamon;
+package ru.diamon.tiamon.util;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,20 +9,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
 import android.widget.Toast;
+import ru.diamon.tiamon.Game_Zone;
+import ru.diamon.tiamon.Main;
+import ru.diamon.tiamon.R;
+import ru.diamon.tiamon.Records;
 
-import java.util.Date;
 
-
-public class Index extends Activity {
+public abstract class Index extends Activity {
 
     protected SharedPreferences PET;
     protected SharedPreferences.Editor E;
     protected Intent intent_records,intent_game;
 
-    String _NAME;
-    boolean _VIRGIN;
-    int _AGE,_HARD,_MONEY;
-    long _LAST,_NEXT,_BIRTH;
+    protected String _NAME;
+    protected boolean _VIRGIN;
+    protected int _AGE,_HARD,_MONEY;
+    protected long _LAST,_NEXT,_BIRTH;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,11 @@ public class Index extends Activity {
     }
 
     @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, Main.class));
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.about) {
@@ -73,25 +80,13 @@ public class Index extends Activity {
         toast.show();
     }
 
-    public void savePet(){
-        E = PET.edit();
-        E.putInt("AGE", _AGE);
-        E.putLong("LAST", new Date().getTime());
-        E.apply();
-    }
+    abstract public void savePet();
 
     public void loadPet(){
         PET = getSharedPreferences("PET", Context.MODE_PRIVATE);
-        // <Fixed>
         _NAME = PET.getString("NAME", "Tiamon");
         _BIRTH = PET.getLong("BIRTH", 0);
         _VIRGIN = PET.getBoolean("VIRGIN",true);
-
-        _AGE = PET.getInt("AGE", 0);
-        _LAST = PET.getLong("LAST", 0);
-        _NEXT = PET.getLong("NEXT", 0);
-        _HARD = PET.getInt("HARD", 0);
-        _MONEY = PET.getInt("MONEY",500);
     }
 
     public void initialization(){
