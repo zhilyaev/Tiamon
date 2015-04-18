@@ -1,6 +1,7 @@
 package ru.diamon.tiamon;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -22,5 +23,10 @@ public class Records extends Activity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,	android.R.layout.simple_list_item_1, catnames);
 
         lv.setAdapter(adapter);
+    }
+
+    @Override // В главное меню
+    public void onBackPressed() {
+        startActivity(new Intent(this, Main.class));
     }
 }
