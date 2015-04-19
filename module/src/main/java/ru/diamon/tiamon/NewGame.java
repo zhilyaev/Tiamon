@@ -24,7 +24,10 @@ public class NewGame extends Index {
         E = PET.edit();
         E.putString("NAME", name.getText().toString());
         E.putLong("BIRTH", new Date().getTime());
-        E.putBoolean("isGame",true);
+        E.putLong("LAST",0);
+        E.putInt("HANGRY",42+random.nextInt(42));
+        E.putInt("SLEEP",42+random.nextInt(42));
+        E.putInt("PLAY",42+random.nextInt(42));
         E.apply();
     }
 

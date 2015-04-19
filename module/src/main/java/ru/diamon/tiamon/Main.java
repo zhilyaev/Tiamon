@@ -33,7 +33,7 @@ public class Main extends Index {
     @Override
     protected void onStart() {
         super.onStart();
-        if (!isContinue) { btn_continue.setEnabled(false); }
+        if (_AGE==0) { btn_continue.setEnabled(false); }
     }
 
     /* Переход в Активность: Новая Игра */

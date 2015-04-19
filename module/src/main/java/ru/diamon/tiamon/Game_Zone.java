@@ -13,35 +13,30 @@ import ru.diamon.tiamon.util.Index;
 
 import java.io.File;
 import java.util.Date;
-import java.util.Random;
 
 public class Game_Zone extends Index {
 
-    TextView TV_age, TV_name,TV_catbucks,tv_sleep,tv_play,tv_hangry;
+    TextView tv_age, tv_name,tv_catbucks,tv_sleep,tv_play,tv_hangry;
     ImageButton btn_shop;
     ImageView ripView;
     Intent intent_shop;
-    Handler head_sleep,head_play,head_hangry,h;
+    Handler h;
     ProgressBar bar_sleep,bar_play,bar_hangry;
     WebView petView;
     Thread life;
-    static Random random;
 
-    final int U = 3000;
-    boolean die = false;
-    int _status_HANGRY,_status_SLEEP,_status_PLAY;
-    //protected final int FIRST_TIME = 1000*60*60*12;
-    final int FIRST_TIME = 12000;
+    final int U = 3000; // Сложность
+    final int FIRST_TIME = 5000; // 1000*60*60*12
 
-    @Override
+    @Override // ШАГ №1
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
         petView = (WebView) findViewById(R.id.PetView);
-        TV_name = (TextView) findViewById(R.id.label_name);
-        TV_age = (TextView) findViewById(R.id.label_age);
-        TV_catbucks = (TextView) findViewById(R.id.catbucks);
+        tv_name = (TextView) findViewById(R.id.label_name);
+        tv_age = (TextView) findViewById(R.id.label_age);
+        tv_catbucks = (TextView) findViewById(R.id.catbucks);
         btn_shop = (ImageButton) findViewById(R.id.btn_shop);
         ripView = (ImageView) findViewById(R.id.rip);
         tv_sleep = (TextView) findViewById(R.id.TV_sleep);
@@ -50,124 +45,115 @@ public class Game_Zone extends Index {
         bar_sleep = (ProgressBar) findViewById(R.id.bar_sleep);
         bar_play = (ProgressBar) findViewById(R.id.bar_play);
         bar_hangry = (ProgressBar) findViewById(R.id.bar_hangry);
-
-        head_sleep = new Handler() {
-            public void handleMessage(android.os.Message msg) {
-                tv_sleep.setText(String.valueOf(msg.what));
-            }
-        };
-        head_play = new Handler() {
-            public void handleMessage(android.os.Message msg) {
-                tv_play.setText(String.valueOf(msg.what));
-            }
-        };
-        head_hangry = new Handler() {
-            public void handleMessage(android.os.Message msg) {
-                tv_hangry.setText(String.valueOf(msg.what));
-            }
-        };
-
         btn_shop.setOnClickListener(view -> startActivity(intent_shop));
-        ripView.setOnClickListener(view -> showMsg("Один прогиб и ты погиб"));
+        ripView.setOnClickListener(view -> startActivity(intent_records));
 
         h = new Handler();
 
         life = new Thread((Runnable) ()->{
-            do {
-                try {Thread.sleep(_HARD);}
-                catch (InterruptedException e) {System.out.println("thread error");}
+            while (_status_HANGRY!=0 || _status_SLEEP!=0 ||_status_PLAY!=0) {
                 _status_PLAY -= random.nextInt(10);
                 _status_HANGRY -= random.nextInt(10);
                 _status_SLEEP -= random.nextInt(10);
 
-                _HARD -= U;
+                if(_HARD>U){_HARD -= U;}
 
-                upStatus();
 
-            } while (!die);
+                _AGE = (new Date().getTime()-_BIRTH)/1000;
+                // ШАг №7
+                savePet();
+                // ШАг №8
+                updateLayout();
+                // Сложность Шаг №6
+                try {Thread.sleep(_HARD);}
+                catch (InterruptedException e) {System.out.println("thread error");}
+
+            }
+
+
+            // ШАг 9
+            h.post((Runnable) ()->{
+                ripView.setVisibility(View.VISIBLE);
+            });
+            File file = new File("/data/data/ru.diamon.tiamon/shared_prefs/PET.xml");
+            if (file.exists()){file.delete();}
+            file = new File ("/data/data/ru.diamon.tiamon/shared_prefs/PET.bak");
+            if (file.exists()){file.delete();}
+            loadPet();
+            E = PET.edit();
+            E.putLong("AGE",0);
+            E.apply();
+
         });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        // ШАг №2
+        tv_name.setText(_NAME);
 
-        TV_name.setText(_NAME);
-        TV_age.setText(String.valueOf(_AGE));
-        TV_catbucks.setText(String.valueOf(_MONEY));
-
-        if(!_VIRGIN){
-            // Сумма Отниманий  = (S + 2d-4f) / (2d) * 5
+        // Шаг №3
+        if(_LAST!=0){
+            // Сумма Отндфнщгеиманий  = (S + 2d-4f) / (2d) * 5
             long csum = (((new Date().getTime()-_LAST)+2*U-4*FIRST_TIME) / (2*U)) * random.nextInt(5);
 
             _status_HANGRY -= csum;
             _status_SLEEP -= csum;
             _status_PLAY -= csum;
+            savePet();
         }
-        upStatus();
+
+        //Шаг №4
+        updateLayout();
+        // Щаг №5
         life.start();
+    }
+
+    public void updateLayout(){
+        h.post((Runnable)()->{
+            tv_sleep.setText(String.valueOf(_status_SLEEP));
+            tv_play.setText(String.valueOf(_status_PLAY));
+            tv_hangry.setText(String.valueOf(_status_HANGRY));
+            bar_sleep.setProgress(_status_SLEEP);
+            bar_play.setProgress(_status_PLAY);
+            bar_hangry.setProgress(_status_HANGRY);
+            tv_catbucks.setText(String.valueOf(_MONEY));
+            tv_age.setText(String.valueOf(_AGE));
+        });
     }
 
     @Override
     public void loadPet() {
         super.loadPet();
-        _status_HANGRY = PET.getInt("HANGRY",random.nextInt(84));
-        _status_SLEEP  = PET.getInt("SLEEP",random.nextInt(84));
-        _status_PLAY   = PET.getInt("PLAY",random.nextInt(84));
+        _status_HANGRY = PET.getInt("HANGRY",42+random.nextInt(42));
+        _status_SLEEP  = PET.getInt("SLEEP",42+random.nextInt(42));
+        _status_PLAY   = PET.getInt("PLAY",42+random.nextInt(42));
 
-        _AGE = PET.getInt("AGE", 0);
-        _LAST = PET.getLong("LAST", 0);
-        //_NEXT = PET.getLong("NEXT", 0);
         _HARD = PET.getInt("HARD", FIRST_TIME);
         _MONEY = PET.getInt("MONEY",500);
     }
 
     @Override
     public void savePet() {
-        E = PET.edit();
-        E.putInt("HANGRY",_status_HANGRY);
-        E.putInt("SLEEP",_status_SLEEP);
-        E.putInt("PLAY",_status_PLAY);
-        E.apply();
-    }
-
-    @Override
-    public void initialization() {
-        super.initialization();
-        random = new Random(42);
-    }
-
-    public void upStatus(){
-
         if(_status_HANGRY<0){_status_HANGRY=0;}
         if(_status_SLEEP<0){_status_SLEEP=0;}
         if(_status_PLAY<0){_status_PLAY=0;}
-
         if(_status_HANGRY>100){_status_HANGRY=100;}
         if(_status_SLEEP>100){_status_SLEEP=100;}
         if(_status_PLAY>100){_status_PLAY=100;}
 
-        head_hangry.sendEmptyMessage(_status_HANGRY);
-        head_sleep.sendEmptyMessage(_status_SLEEP);
-        head_play.sendEmptyMessage(_status_PLAY);
+        E = PET.edit();
+        E.putInt("HANGRY",_status_HANGRY);
+        E.putInt("SLEEP",_status_SLEEP);
+        E.putInt("PLAY",_status_PLAY);
 
-        bar_sleep.setProgress(_status_SLEEP);
-        bar_play.setProgress(_status_PLAY);
-        bar_hangry.setProgress(_status_HANGRY);
-
-        if(_status_HANGRY<=0 ||_status_SLEEP<=0 ||_status_PLAY<=0){
-            die=true;
-            h.post((Runnable) ()->{
-                //petView.setEnabled(false);
-                ripView.setVisibility(View.VISIBLE);
-            });
-            // Удалить текущую игру
-            File file = new File("/data/data/ru.diamon.tiamon/shared_prefs/PET.xml");
-            file.delete();
-            file = new File ("/data/data/ru.diamon.tiamon/shared_prefs/PET.bak");
-            if (file.exists()){file.delete();}
-
-        }
-        savePet();
+        E.putLong("LAST",new Date().getTime());
+        E.putInt("HARD", _HARD);
+        E.putInt("MONEY",_MONEY);
+        E.putLong("AGE", _AGE);
+        E.apply();
     }
+
+
 }
