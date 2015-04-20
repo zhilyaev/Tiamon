@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import java.io.File;
+
 abstract public class Kitty extends Index {
 
     @Override
@@ -29,5 +31,16 @@ abstract public class Kitty extends Index {
         _BIRTH = PET.getLong("BIRTH", 0);
         _LAST = PET.getLong("LAST",0);
         _AGE = PET.getLong("AGE",0);
+    }
+
+    public void delPet(){
+        File file = new File("/data/data/ru.diamon.tiamon/shared_prefs/PET.xml");
+        if (file.exists()){file.delete();}
+        file = new File ("/data/data/ru.diamon.tiamon/shared_prefs/PET.bak");
+        if (file.exists()){file.delete();}
+        loadPet();
+        E = PET.edit();
+        E.putLong("AGE",0);
+        E.apply();
     }
 }

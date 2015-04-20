@@ -10,7 +10,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import ru.diamon.tiamon.util.Kitty;
 
-import java.io.File;
 import java.util.Date;
 
 public class Game_Zone extends Kitty {
@@ -49,37 +48,27 @@ public class Game_Zone extends Kitty {
 
         life = new Thread((Runnable) ()->{
             while (_status_HANGRY!=0 || _status_SLEEP!=0 ||_status_PLAY!=0) {
+                _AGE = (new Date().getTime()-_BIRTH)/1000;
                 _status_PLAY -= random.nextInt(10);
                 _status_HANGRY -= random.nextInt(10);
                 _status_SLEEP -= random.nextInt(10);
-
+                // Усложнить
                 if(_HARD>U){_HARD -= U;}
-
-
-                _AGE = (new Date().getTime()-_BIRTH)/1000;
-                // ШАг №7
+                // Сохранить
                 savePet();
-                // ШАг №8
+                // Обновить
                 updateLayout();
-                // Сложность Шаг №6
+                // Уснуть
                 try {Thread.sleep(_HARD);}
                 catch (InterruptedException e) {System.out.println("thread error");}
-
             }
 
-
-            // ШАг 9
+            // Обновить лайаут
             handler.post((Runnable) ()->{
                 ripView.setVisibility(View.VISIBLE);
             });
-            File file = new File("/data/data/ru.diamon.tiamon/shared_prefs/PET.xml");
-            if (file.exists()){file.delete();}
-            file = new File ("/data/data/ru.diamon.tiamon/shared_prefs/PET.bak");
-            if (file.exists()){file.delete();}
-            loadPet();
-            E = PET.edit();
-            E.putLong("AGE",0);
-            E.apply();
+            // Удалить Питомца
+            delPet();
 
         });
     }
