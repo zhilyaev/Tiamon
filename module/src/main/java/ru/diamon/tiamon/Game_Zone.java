@@ -2,25 +2,23 @@ package ru.diamon.tiamon;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import ru.diamon.tiamon.util.Index;
+import ru.diamon.tiamon.util.Kitty;
 
 import java.io.File;
 import java.util.Date;
 
-public class Game_Zone extends Index {
+public class Game_Zone extends Kitty {
 
     TextView tv_age, tv_name,tv_catbucks,tv_sleep,tv_play,tv_hangry;
     ImageButton btn_shop;
     ImageView ripView;
     Intent intent_shop;
-    Handler h;
     ProgressBar bar_sleep,bar_play,bar_hangry;
     WebView petView;
     Thread life;
@@ -28,7 +26,7 @@ public class Game_Zone extends Index {
     final int U = 3000; // Сложность
     final int FIRST_TIME = 5000; // 1000*60*60*12
 
-    @Override // ШАГ №1
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
@@ -48,7 +46,6 @@ public class Game_Zone extends Index {
         btn_shop.setOnClickListener(view -> startActivity(intent_shop));
         ripView.setOnClickListener(view -> startActivity(intent_records));
 
-        h = new Handler();
 
         life = new Thread((Runnable) ()->{
             while (_status_HANGRY!=0 || _status_SLEEP!=0 ||_status_PLAY!=0) {
@@ -72,7 +69,7 @@ public class Game_Zone extends Index {
 
 
             // ШАг 9
-            h.post((Runnable) ()->{
+            handler.post((Runnable) ()->{
                 ripView.setVisibility(View.VISIBLE);
             });
             File file = new File("/data/data/ru.diamon.tiamon/shared_prefs/PET.xml");
@@ -111,7 +108,7 @@ public class Game_Zone extends Index {
     }
 
     public void updateLayout(){
-        h.post((Runnable)()->{
+        handler.post((Runnable)()->{
             tv_sleep.setText(String.valueOf(_status_SLEEP));
             tv_play.setText(String.valueOf(_status_PLAY));
             tv_hangry.setText(String.valueOf(_status_HANGRY));

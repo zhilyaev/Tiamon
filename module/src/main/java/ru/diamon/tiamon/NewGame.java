@@ -4,11 +4,11 @@ package ru.diamon.tiamon;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import ru.diamon.tiamon.util.Index;
+import ru.diamon.tiamon.util.Kitty;
 
 import java.util.Date;
 
-public class NewGame extends Index {
+public class NewGame extends Kitty {
     EditText name;
 
     @Override

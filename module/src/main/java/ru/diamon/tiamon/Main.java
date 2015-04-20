@@ -4,9 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import ru.diamon.tiamon.util.Index;
+import ru.diamon.tiamon.util.Kitty;
 
-public class Main extends Index {
+public class Main extends Kitty {
     protected Intent intent_newgame,intent_about;
     private Button btn_continue;
     
@@ -36,19 +36,15 @@ public class Main extends Index {
         if (_AGE==0) { btn_continue.setEnabled(false); }
     }
 
-    /* Переход в Активность: Новая Игра */
     public void NewGameActivity(View view){
         startActivity(intent_newgame);
     }
 
-    /* Переход в Активность: Рекорды */
     public void RecordsActivity(View view) {
         startActivity(intent_records);
     }
 
-    /* Переход в Активность: О Таймоне */
     public void AboutActivity(View view) {
         startActivity(intent_about);
     }
-
 }

@@ -11,11 +11,11 @@
                   android:textAppearance="?android:attr/textAppearanceLarge" android:text="@string/title_activity_records"
                   android:id="@+id/textView3"
                   android:layout_gravity="center_horizontal"
-                  android:layout_alignBottom="@+id/include2" android:layout_centerHorizontal="true"/>
+                  android:layout_alignBottom="@+id/include4" android:layout_centerHorizontal="true"/>
         <include android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
                  layout="@layout/sound" android:layout_alignParentTop="true" android:layout_alignParentStart="true"
-                 android:id="@+id/include2"/>
+                 android:id="@+id/include4"/>
         <ListView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

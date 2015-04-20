@@ -1,17 +1,15 @@
 package ru.diamon.tiamon;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import ru.diamon.tiamon.util.Index;
 
-public class Records extends Activity {
+public class Records extends Index {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_records);
-        // получаем экземпляр элемента ListView
         ListView lv = (ListView) findViewById(R.id.listView);
 
         final String[] catnames = new String[] {
@@ -24,8 +22,4 @@ public class Records extends Activity {
 
     }
 
-    @Override // В главное меню
-    public void onBackPressed() {
-        startActivity(new Intent(this, Main.class));
-    }
 }

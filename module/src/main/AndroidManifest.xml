@@ -29,6 +29,8 @@
             android:label="@string/title_activity_about"
             android:theme="@style/FullscreenTheme" >
         </activity>
+
+        <service android:enabled="true" android:name=".util.SoundService" />
     </application>
 
 </manifest>
