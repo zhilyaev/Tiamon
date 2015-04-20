@@ -21,6 +21,7 @@ public class NewGame extends Kitty {
 
     @Override
     public void savePet() {
+        // По Умолчанию
         E = PET.edit();
         E.putString("NAME", name.getText().toString());
         E.putLong("BIRTH", new Date().getTime());

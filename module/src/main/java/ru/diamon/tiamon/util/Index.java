@@ -26,6 +26,7 @@ public abstract class Index extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        // Если Музыка Играет, то выключить службу фонового звука.
         if (isSound) stopService(new Intent(this, SoundService.class));
     }
 
@@ -50,7 +51,7 @@ public abstract class Index extends Activity {
         return true;
     }
 
-    @Override
+    @Override // Назад в Меню
     public void onBackPressed() {
         startActivity(new Intent(this, Main.class));
     }

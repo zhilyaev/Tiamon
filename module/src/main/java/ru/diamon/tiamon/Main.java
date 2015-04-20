@@ -27,23 +27,22 @@ public class Main extends Kitty {
 
     @Override
     public void savePet() {
-
+        // Ничего не сохраняем
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        // Продолжить?
         if (_AGE==0) { btn_continue.setEnabled(false); }
     }
 
     public void NewGameActivity(View view){
         startActivity(intent_newgame);
     }
-
     public void RecordsActivity(View view) {
         startActivity(intent_records);
     }
-
     public void AboutActivity(View view) {
         startActivity(intent_about);
     }

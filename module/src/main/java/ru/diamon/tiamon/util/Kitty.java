@@ -9,6 +9,7 @@ abstract public class Kitty extends Index {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Загрузить
         loadPet();
     }
 
