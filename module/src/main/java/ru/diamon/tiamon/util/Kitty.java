@@ -22,6 +22,7 @@ abstract public class Kitty extends Index {
     protected int _HARD,_MONEY;
     protected long _LAST,_BIRTH,_AGE;
     protected int _status_HANGRY,_status_SLEEP,_status_PLAY;
+    protected boolean _category_sleep,_category_play,_category_ill;
 
     abstract public void savePet();
 
