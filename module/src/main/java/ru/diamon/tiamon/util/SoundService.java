@@ -8,14 +8,16 @@ import ru.diamon.tiamon.R;
 
 public class SoundService extends Service {
     MediaPlayer player;
+    public static int r_id_row = R.raw.backgroud;
 
     @Override
     public IBinder onBind(Intent intent) {
         return null;
     }
+
     @Override
     public void onCreate() {
-        player = MediaPlayer.create(this, R.raw.backgroud);
+        player = MediaPlayer.create(this, r_id_row);
         player.setLooping(true);
     }
 
