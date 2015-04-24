@@ -65,6 +65,9 @@ public abstract class Index extends Activity {
     protected final void gifView(int R_id_webView, String drawable){
         WebView gif; //Потому что gifDecode А) Черный-фон б)Позиционирование
         gif = (WebView) findViewById(R_id_webView);
+        gifView(gif,drawable);
+    }
+    protected final void gifView(WebView gif,String drawable){
         //webkit поддерживает <center>, так что не гунди
         String htmlText = "<html><body><center><img src='file:///android_res/drawable/"+drawable+"'/></center></body></html>";
         gif.loadDataWithBaseURL(null, htmlText, "text/html", "en_US", null);
