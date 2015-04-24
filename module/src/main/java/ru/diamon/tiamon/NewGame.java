@@ -1,6 +1,7 @@
 package ru.diamon.tiamon;
 
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -13,6 +14,7 @@ public class NewGame extends Kitty {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //SoundService.r_id_row = R.raw.purr;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newgame);
         gifView(R.id.gifhi,"cat_purring.gif");
@@ -33,6 +35,8 @@ public class NewGame extends Kitty {
     }
 
     public void CreateGame(View view){
+        MediaPlayer mp3 = MediaPlayer.create(this, R.raw.purr);
+        mp3.start();
         savePet();
         startActivity(intent_game);
     }
