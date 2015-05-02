@@ -2,26 +2,25 @@ package ru.diamon.tiamon.util;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
-import ru.diamon.tiamon.Game_Zone;
-import ru.diamon.tiamon.Main;
-import ru.diamon.tiamon.R;
-import ru.diamon.tiamon.Records;
+import ru.diamon.tiamon.*;
 
 import java.util.Random;
 
 
 public abstract class Index extends Activity {
 
-    protected Intent intent_records,intent_game,intent_now;
+    protected SharedPreferences app;
+    protected Intent intent_records,intent_game,intent_now,intent_about;
     protected static Random random;
     protected Handler handler;
-    private boolean isSound;
+    protected static boolean isSound;
 
     @Override
     protected void onDestroy() {
@@ -33,6 +32,7 @@ public abstract class Index extends Activity {
     protected void initialization(){
         intent_records = new Intent(this, Records.class);
         intent_game = new Intent(this, Game_Zone.class);
+        intent_about = new Intent(this, About.class);
         random = new Random();
         handler = new Handler();
         intent_now = getIntent();
@@ -42,7 +42,6 @@ public abstract class Index extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initialization();
-        if (isSound){startService(new Intent(this, SoundService.class));}
     }
 
     @Override
@@ -59,6 +58,9 @@ public abstract class Index extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        if (id == R.id.about){
+            startActivity(intent_about);
+        }
         return id == R.id.about || super.onOptionsItemSelected(item);
     }
 
@@ -73,14 +75,8 @@ public abstract class Index extends Activity {
         gif.loadDataWithBaseURL(null, htmlText, "text/html", "en_US", null);
     }
 
-    public void soul(View view){ // Потому что onChange для слабоков
-        if(!isSound){
-            startService(new Intent(this, SoundService.class));
-            isSound = true;
-        }else {
-            stopService(new Intent(this, SoundService.class));
-            isSound = false;
-        }
+    public void soul(View view){
+        startActivity(new Intent(this,Settings.class));
     }
 
 

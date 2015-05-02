@@ -3,11 +3,14 @@ package ru.diamon.tiamon;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import ru.diamon.tiamon.util.Kitty;
 
 public class Main extends Kitty {
-    protected Intent intent_newgame,intent_about;
+    protected Intent intent_newgame;
     private Button btn_continue;
     
     @Override
@@ -22,7 +25,6 @@ public class Main extends Kitty {
     public void initialization() {
         super.initialization();
         intent_newgame = new Intent(this, NewGame.class);
-        intent_about = new Intent(this, About.class);
     }
 
     @Override
@@ -45,5 +47,15 @@ public class Main extends Kitty {
     }
     public void AboutActivity(View view) {
         startActivity(intent_about);
+    }
+    private int clicker = 0;
+    public void egg(View view){
+        ImageView egg = (ImageView) findViewById(R.id.egg);
+        Animation egy = AnimationUtils.loadAnimation(this, R.anim.transformegg);
+        clicker++;
+        if (clicker==10){
+            egg.setVisibility(View.VISIBLE);
+            egg.startAnimation(egy);
+        }
     }
 }

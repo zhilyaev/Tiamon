@@ -9,21 +9,18 @@
     <string name="title_activity_loading">Loading...</string>
     <string name="title_activity_newgame">New game</string>
     <string name="title_activity_records">Records</string>
+    <string name="title_activity_shop">Shop</string>
+    <string name="title_activity_settings">Settigns</string>
 
     <!-- Для постоянных -->
     <string name="label_menu">Menu</string>
     <string name="label_petsname">Pets Name</string>
     <string name="label_money">Catbucks</string>
     <string name="label_hangry">Hangry</string>
-    <string name="label_sleep">Бодрость</string>
+    <string name="label_sleep">Sleep</string>
     <string name="label_play">Happy</string>
-    <string name="label_about">
-        <b>Таймон
-            <i>V 0.3.3</i>
-        </b>
-        \n Разработчик : Дмитрий Жиляев\n Композитор : Mr\n
-        - Никогда не любил Тамагочи
-    </string>
+    <string name="label_about"><b>Таймон <i>V 0.3.3</i></b>         \n Разработчик : Дмитрий Жиляев\n Композитор : Mr\n
+        - Никогда не любил Тамагочи</string>
 
     <!-- Для кнопок и действий -->
     <string name="action_continue">Continue</string>
@@ -37,6 +34,11 @@
     <!-- Для событий информера -->
     <string name="event_lottery">You have win in lottery 777 catbucks!</string>
     <string name="event_mother">Mother present you 20 catbucks!</string>
+    <string name="dummy_button"> </string>
+    <string name="hello_world">Hello world!</string>
+    <string name="settings_hard">Hard</string>
+    <string name="settings_norm">Normal</string>
+    <string name="settings_easy">Easy</string>
+    <string name="settings_complexity">Complexity game</string>
 
-    <string name="dummy_button">GODDAMN BUTTON</string>
 </resources>

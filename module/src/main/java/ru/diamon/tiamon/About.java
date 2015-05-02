@@ -41,6 +41,7 @@ public class About extends Activity {
     public void onBackPressed() {
         startActivity(new Intent(this, Main.class));
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

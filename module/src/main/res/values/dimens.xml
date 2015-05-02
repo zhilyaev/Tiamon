@@ -5,4 +5,5 @@
     <dimen name="sqr_btn">60dp</dimen>
     <dimen name="menu_btn_width">500px</dimen>
     <dimen name="menu_btn_height">60dp</dimen>
+    <dimen name="category_items">10dp</dimen>
 </resources>

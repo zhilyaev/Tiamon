@@ -3,10 +3,12 @@
                 xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
                 android:layout_height="match_parent" tools:context=".Index">
 
-    <ToggleButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sound"
-                  android:id="@+id/btn_sound"
-                  android:checked="false"
-                  android:layout_alignParentTop="true" android:layout_alignParentStart="true" android:textOff="@string/toogle_sound_off"
-                  android:textOn="@string/toogle_sound_on" android:enabled="true" android:onClick="soul"
-                  android:minWidth="@dimen/sqr_btn" android:minHeight="@dimen/sqr_btn"/>
+    <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_settings"
+            android:src="@drawable/tools"
+            android:layout_alignParentTop="true" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" android:maxWidth="@dimen/sqr_btn"
+            android:maxHeight="@dimen/sqr_btn" android:onClick="soul"/>
 </RelativeLayout>

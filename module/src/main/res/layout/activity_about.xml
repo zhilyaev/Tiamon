@@ -10,15 +10,6 @@
     <FrameLayout android:layout_width="match_parent"
                  android:layout_height="match_parent"
                  android:fitsSystemWindows="true">
-        <TextView android:id="@+id/fullscreen_content"
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:keepScreenOn="true"
-                  android:textColor="#33b5e5"
-                  android:textStyle="bold"
-                  android:textSize="50sp"
-                  android:gravity="center"
-                  android:text=""/>
         <LinearLayout android:id="@+id/fullscreen_content_controls"
                       style="?metaButtonBarStyle"
                       android:layout_width="match_parent"
@@ -54,6 +45,15 @@
                     android:textStyle="bold"
                     android:id="@+id/textView16" android:layout_gravity="center" android:gravity="center"/>
         </LinearLayout>
+        <TextView android:id="@+id/fullscreen_content"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:keepScreenOn="true"
+                  android:textColor="#33b5e5"
+                  android:textStyle="bold"
+                  android:textSize="50sp"
+                  android:gravity="center"
+                  android:layout_gravity="right|bottom"/>
     </FrameLayout>
 
 </FrameLayout>

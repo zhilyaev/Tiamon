@@ -5,11 +5,11 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="#ffffff"
-              tools:context=".NewGame">
+              tools:context=".NewGame" android:clickable="true">
 
     <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent" android:padding="20px">
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                   android:textAppearance="?android:attr/textAppearanceLarge" android:text="@string/title_activity_newgame"
                   android:id="@+id/textView2"
@@ -45,12 +45,14 @@
         </LinearLayout>
         <include android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
-                 layout="@layout/sound" android:layout_alignParentTop="true" android:layout_alignParentStart="true"
-                 android:id="@+id/include3"/>
+                 layout="@layout/sound"
+                 android:id="@+id/include3" android:layout_alignParentTop="true" android:layout_alignParentLeft="true"
+                 android:layout_alignParentStart="true"/>
         <WebView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/gifhi"
-                android:layout_above="@+id/linearLayout" android:layout_centerHorizontal="true"/>
+                android:layout_above="@+id/linearLayout" android:layout_centerHorizontal="true"
+                android:clickable="false"/>
     </RelativeLayout>
 </LinearLayout>

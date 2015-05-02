@@ -1,6 +1,7 @@
 package ru.diamon.tiamon;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
@@ -22,8 +23,8 @@ public class Game_Zone extends Kitty {
     WebView petView;
     Thread life,events;
 
-    final int U = 3000; // Сложность
-    final int FIRST_TIME = 5000; // 1000*60*60*12
+    static int U;
+    final int FIRST_TIME = 15000; // 1000*60*60*12
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,26 +50,36 @@ public class Game_Zone extends Kitty {
         btn_sleep.setOnClickListener(view -> {
             _status_SLEEP+=random.nextInt(20);
             gifView(petView,"sleep.gif");
+            MediaPlayer mp3 = MediaPlayer.create(this, R.raw.sleep);
+            mp3.start();
             savePet();
-            updateLayout();
+            bar_sleep.setProgress(_status_SLEEP);
+            tv_sleep.setText(String.valueOf(_status_SLEEP));
+            after();
         });
         btn_feed.setOnClickListener(view -> {
             _status_HANGRY+=random.nextInt(20);
             gifView(petView,"alarm.gif");
             savePet();
-            updateLayout();
+            tv_hangry.setText(String.valueOf(_status_HANGRY));
+            bar_hangry.setProgress(_status_HANGRY);
+            after();
         });
         btn_play.setOnClickListener(view -> {
             _status_PLAY+=random.nextInt(20);
             gifView(petView,"hihi.gif");
+            MediaPlayer mp3 = MediaPlayer.create(this, R.raw.lol);
+            mp3.start();
             savePet();
-            updateLayout();
+            tv_play.setText(String.valueOf(_status_PLAY));
+            bar_play.setProgress(_status_PLAY);
+            after();
         });
         btn_shop.setOnClickListener(view -> startActivity(intent_shop));
         ripView.setOnClickListener(view -> startActivity(intent_records));
         // Определение основных потоков
         life = new Thread((Runnable) ()->{
-            while (_status_HANGRY!=0 || _status_SLEEP!=0 ||_status_PLAY!=0) {
+            while (!(_status_HANGRY==0 || _status_SLEEP==0 || _status_PLAY==0)) {
                 _AGE = (new Date().getTime()-_BIRTH)/1000;
                 _status_PLAY -= random.nextInt(10);
                 _status_HANGRY -= random.nextInt(10);
@@ -80,7 +91,7 @@ public class Game_Zone extends Kitty {
                 // Обновить
                 updateLayout();
                 // Костыль, чтобы не спать
-                if(_status_HANGRY+_status_PLAY+_status_SLEEP==0) break;
+                if(_status_HANGRY==0 || _status_SLEEP==0 || _status_PLAY==0) break;
                 // Уснуть
                 try {Thread.sleep(_HARD);}
                 catch (InterruptedException e) {System.out.println("thread error");}
@@ -92,7 +103,7 @@ public class Game_Zone extends Kitty {
         events = new Thread((Runnable) () ->{
             while(life.isAlive()){ // Пока жив , а можно было сделать внутри потока life
                 if(random.nextInt(777) == 1) _MONEY+=100000;
-                if(random.nextInt(100) == 5) _category_ill = true;
+                //if(random.nextInt(100) == 5) _category_ill = true;
                 // Уснуть
                 try {Thread.sleep(U);}
                 catch (InterruptedException e) {System.out.println("thread error");}
@@ -112,6 +123,7 @@ public class Game_Zone extends Kitty {
             _status_HANGRY -= csum;
             _status_SLEEP -= csum;
             _status_PLAY -= csum;
+            _LAST = 0;
             savePet();
         }
         updateLayout();
@@ -120,11 +132,10 @@ public class Game_Zone extends Kitty {
 
     public void updateLayout(){
         handler.post((Runnable)()->{
-
             // Сменить Кнопку кормления
-            if(_status_HANGRY<=15) btn_feed.setImageDrawable(getResources().getDrawable(R.drawable.cat_hungry));
+            if(_status_HANGRY<=20) btn_feed.setImageDrawable(getResources().getDrawable(R.drawable.cat_hungry));
             else btn_feed.setImageDrawable(getResources().getDrawable(R.drawable.cat_food));
-
+            // Обновить вьюшки
             tv_sleep.setText(String.valueOf(_status_SLEEP));
             tv_play.setText(String.valueOf(_status_PLAY));
             tv_hangry.setText(String.valueOf(_status_HANGRY));
@@ -133,65 +144,37 @@ public class Game_Zone extends Kitty {
             bar_hangry.setProgress(_status_HANGRY);
             tv_catbucks.setText(String.valueOf(_MONEY));
             tv_age.setText(String.valueOf(_AGE));
-
-            if(_status_HANGRY == 0 && _status_PLAY==0 && _status_SLEEP==0){
+            // Относительно Статусов
+            if(_status_HANGRY==0 || _status_SLEEP==0 || _status_PLAY==0){
                 ripView.setVisibility(View.VISIBLE);
                 petView.setEnabled(false);
+                btn_shop.setEnabled(false);
+                btn_feed.setEnabled(false);
+                btn_sleep.setEnabled(false);
+                btn_play.setEnabled(false);
             }else if(_status_HANGRY+_status_PLAY+_status_SLEEP>=290){
                 _MONEY+=1000;
                 gifView(petView,"love.gif");
             }else if(_status_HANGRY+_status_PLAY+_status_SLEEP<=20){
                 gifView(petView,"sorry.gif");
             }else{
-                gifView(petView,"sorry.gif");
+                gifView(petView,"hi.gif");
             }
-
         });
     }
 
-    @Override
-    public void loadPet() {
-        super.loadPet();
-        _status_HANGRY = PET.getInt("HANGRY",42+random.nextInt(42));
-        _status_SLEEP  = PET.getInt("SLEEP",42+random.nextInt(42));
-        _status_PLAY   = PET.getInt("PLAY",42+random.nextInt(42));
-
-        _HARD = PET.getInt("HARD", FIRST_TIME);
-        _MONEY = PET.getInt("MONEY",500);
-    }
-
-    @Override
-    public void savePet() {
-        // ОДЗ
-        if(_status_HANGRY<0){_status_HANGRY=0;}
-        if(_status_SLEEP<0){_status_SLEEP=0;}
-        if(_status_PLAY<0){_status_PLAY=0;}
-        if(_status_HANGRY>100){_status_HANGRY=100;}
-        if(_status_SLEEP>100){_status_SLEEP=100;}
-        if(_status_PLAY>100){_status_PLAY=100;}
-
-        E = PET.edit();
-        E.putInt("HANGRY",_status_HANGRY);
-        E.putInt("SLEEP",_status_SLEEP);
-        E.putInt("PLAY",_status_PLAY);
-
-        E.putLong("LAST",new Date().getTime());
-        E.putInt("HARD", _HARD);
-        E.putInt("MONEY",_MONEY);
-        E.putLong("AGE", _AGE);
-        E.apply();
-    }
-
     private void after(){
-        new Thread((Runnable)()->{
+        Thread bug = new Thread((Runnable)()->{
             try {Thread.sleep(U);}
             catch (InterruptedException e) {System.out.println("thread error");}
             gifView(petView,"hi.gif");
-        }).start();
+        });
+        bug.start();
     }
 
     @Override
     protected void initialization() {
         super.initialization();
+        intent_shop = new Intent(this, Shop.class);
     }
 }

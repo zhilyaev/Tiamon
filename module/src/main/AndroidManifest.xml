@@ -17,20 +17,35 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Game_Zone"
+        <activity
+            android:name=".Game_Zone"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
-        <activity android:name=".NewGame"
+        <activity
+            android:name=".NewGame"
             android:label="@string/title_activity_newgame" />
-        <activity android:name=".Records"
+        <activity
+            android:name=".Records"
             android:label="@string/title_activity_records" />
-        <activity android:name=".About"
+        <activity
+            android:name=".About"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_about"
             android:theme="@style/FullscreenTheme" >
         </activity>
 
-        <service android:enabled="true" android:name=".util.SoundService" />
+        <service
+            android:name=".util.SoundService"
+            android:enabled="true" />
+
+        <activity
+            android:name=".Shop"
+            android:label="@string/title_activity_shop" >
+        </activity>
+        <activity
+            android:name=".Settings"
+            android:label="@string/title_activity_settings" >
+        </activity>
     </application>
 
 </manifest>

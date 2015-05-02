@@ -37,7 +37,14 @@
     <string name="event_lottery">Вы выиграли в лотерею 777 котобаксов!</string>
     <string name="event_mother">Сама мать Тереза Подаривала вам 20 котобаксов!</string>
 
-    <string name="dummy_button">GODDAMN BUTTON</string>
+    <string name="dummy_button"> </string>
+    <string name="hello_world">Здравсвуй, Товарищ!</string>
+    <string name="title_activity_shop">Магазин</string>
+    <string name="settings_hard">Тяжко</string>
+    <string name="settings_norm">Нормально</string>
+    <string name="settings_easy">Легко</string>
+    <string name="settings_complexity">Сложность игры</string>
+    <string name="title_activity_settings">Настройки</string>
 
 
 </resources>
