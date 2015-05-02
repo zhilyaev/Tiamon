@@ -2,7 +2,6 @@ package ru.diamon.tiamon.util;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
@@ -63,12 +62,12 @@ public abstract class Index extends Activity {
         return id == R.id.about || super.onOptionsItemSelected(item);
     }
 
-    protected final void gifView(int R_id_webView, String drawable){
+    public void gifView(int R_id_webView, String drawable){
         WebView gif; //Потому что gifDecode А) Черный-фон б)Позиционирование
         gif = (WebView) findViewById(R_id_webView);
         gifView(gif,drawable);
     }
-    protected final void gifView(WebView gif,String drawable){
+    public static void gifView(WebView gif,String drawable){
         //webkit поддерживает <center>, так что не гунди
         String htmlText = "<html><body><center><img src='file:///android_res/drawable/"+drawable+"'/></center></body></html>";
         gif.loadDataWithBaseURL(null, htmlText, "text/html", "en_US", null);
@@ -77,7 +76,5 @@ public abstract class Index extends Activity {
     public void soul(View view){
         startActivity(new Intent(this,Settings.class));
     }
-
-
 
 }

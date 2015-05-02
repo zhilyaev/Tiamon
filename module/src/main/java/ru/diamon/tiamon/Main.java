@@ -1,5 +1,6 @@
 package ru.diamon.tiamon;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +17,10 @@ public class Main extends Kitty {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(getSharedPreferences("APP", Context.MODE_PRIVATE).getBoolean("FIRST",true)){
+            startActivity(new Intent(this,Loadings.class));
+        }
+
         setContentView(R.layout.activity_main);
         btn_continue = (Button) findViewById(R.id.menu_continue);
         btn_continue.setOnClickListener(view -> startActivity(intent_game));
