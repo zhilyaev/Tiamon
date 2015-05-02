@@ -1,6 +1,8 @@
 package ru.diamon.tiamon;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
@@ -14,6 +16,7 @@ public class Settings extends Index {
     Switch btn_sound;
     RadioGroup rg;
     ImageView digg;
+    SharedPreferences APP;
 
     public static int complexity = 3;
     @Override
@@ -25,6 +28,8 @@ public class Settings extends Index {
         rg = (RadioGroup) findViewById(R.id.group);
 
         btn_sound.setChecked(isSound);
+        APP = getSharedPreferences("APP", Context.MODE_PRIVATE);
+        complexity = APP.getInt("COMPLEXITY", 3);
         btn_sound.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if(isChecked) startService(new Intent(this, SoundService.class));
             else stopService(new Intent(this, SoundService.class));
@@ -53,7 +58,7 @@ public class Settings extends Index {
                 default:
                     break;
             }
-
+            APP.edit().putInt("COMPLEXITY",complexity).apply();
         });
 
     }

@@ -16,7 +16,6 @@ import java.util.Random;
 
 public abstract class Index extends Activity {
 
-    protected SharedPreferences app;
     protected Intent intent_records,intent_game,intent_now,intent_about;
     protected static Random random;
     protected Handler handler;

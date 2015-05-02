@@ -23,13 +23,14 @@ public class Game_Zone extends Kitty {
     WebView petView;
     Thread life,events;
 
-    static int U;
+    private int U;
     final int FIRST_TIME = 15000; // 1000*60*60*12
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+        U = Settings.complexity*3000;
         // Инициализация вьюшек
         petView = (WebView) findViewById(R.id.PetView);
         tv_name = (TextView) findViewById(R.id.label_name);
@@ -55,7 +56,7 @@ public class Game_Zone extends Kitty {
             savePet();
             bar_sleep.setProgress(_status_SLEEP);
             tv_sleep.setText(String.valueOf(_status_SLEEP));
-            after();
+            after(mp3.getDuration()/1000);
         });
         btn_feed.setOnClickListener(view -> {
             _status_HANGRY+=random.nextInt(20);
@@ -63,7 +64,7 @@ public class Game_Zone extends Kitty {
             savePet();
             tv_hangry.setText(String.valueOf(_status_HANGRY));
             bar_hangry.setProgress(_status_HANGRY);
-            after();
+            after(10);
         });
         btn_play.setOnClickListener(view -> {
             _status_PLAY+=random.nextInt(20);
@@ -73,7 +74,7 @@ public class Game_Zone extends Kitty {
             savePet();
             tv_play.setText(String.valueOf(_status_PLAY));
             bar_play.setProgress(_status_PLAY);
-            after();
+            after(mp3.getDuration());
         });
         btn_shop.setOnClickListener(view -> startActivity(intent_shop));
         ripView.setOnClickListener(view -> startActivity(intent_records));
@@ -152,10 +153,10 @@ public class Game_Zone extends Kitty {
                 btn_feed.setEnabled(false);
                 btn_sleep.setEnabled(false);
                 btn_play.setEnabled(false);
-            }else if(_status_HANGRY+_status_PLAY+_status_SLEEP>=290){
+            }else if(_status_HANGRY+_status_PLAY+_status_SLEEP>=270){
                 _MONEY+=1000;
                 gifView(petView,"love.gif");
-            }else if(_status_HANGRY+_status_PLAY+_status_SLEEP<=20){
+            }else if(_status_HANGRY+_status_PLAY+_status_SLEEP<=30){
                 gifView(petView,"sorry.gif");
             }else{
                 gifView(petView,"hi.gif");
@@ -163,9 +164,9 @@ public class Game_Zone extends Kitty {
         });
     }
 
-    private void after(){
+    private void after(int t){
         Thread bug = new Thread((Runnable)()->{
-            try {Thread.sleep(U);}
+            try {Thread.sleep(t*1000);}
             catch (InterruptedException e) {System.out.println("thread error");}
             gifView(petView,"hi.gif");
         });
