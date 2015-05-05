@@ -18,12 +18,12 @@ public class Records extends Index {
         DatabaseHelper dbHelper = new DatabaseHelper(this, "mydatabase.db", null, 1);
         SQLiteDatabase sdb = dbHelper.getWritableDatabase();
         String[] cols = new String[] {DatabaseHelper.CAT_NAME_COLUMN, DatabaseHelper.DATE_C, DatabaseHelper.AGE_COLUMN};
-        Cursor crs = sdb.query("cats", cols, null, null,null,null,DatabaseHelper.AGE_COLUMN) ;
+        Cursor crs = sdb.query("cats", cols, null, null,null,null,DatabaseHelper.AGE_COLUMN+" DESC");
         String[] inlist = new String[crs.getCount()];
 
-        crs.moveToLast();// Извращенья
+        //crs.moveToFirst();// Извращенья
         int i = 0;
-        while(crs.moveToPrevious()){
+        while(crs.moveToNext()){
             String uname = crs.getString(crs.getColumnIndex(DatabaseHelper.CAT_NAME_COLUMN));
             String uage = crs.getString(crs.getColumnIndex(DatabaseHelper.AGE_COLUMN));
             String udate = crs.getString(crs.getColumnIndex(DatabaseHelper.DATE_C));

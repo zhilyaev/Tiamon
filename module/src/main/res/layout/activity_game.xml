@@ -147,61 +147,62 @@
                      android:layout_below="@+id/header" android:layout_alignParentLeft="true"
                      android:layout_alignParentStart="true" android:layout_marginTop="5dp"/>
         <ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/btn_play"
-                     android:src="@drawable/cat_paper" android:background="#ffffff"
+                     android:src="@drawable/cat_yarn" android:background="#ffffff"
                      android:layout_below="@+id/header" android:layout_alignParentLeft="true"
                      android:layout_alignParentStart="true" android:layout_marginTop="5dp"/>
     </LinearLayout>
     <LinearLayout android:orientation="vertical" android:layout_width="wrap_content"
                   android:layout_height="wrap_content" android:padding="5px"
-                  android:id="@+id/linearLayout8" android:paddingLeft="5dp"
+                  android:id="@+id/toys" android:paddingLeft="5dp"
                   android:layout_alignParentLeft="true"
-                  android:layout_alignParentStart="true" android:layout_alignTop="@+id/linearLayout6">
+                  android:layout_alignParentStart="true" android:layout_alignTop="@+id/linearLayout6"
+                  android:visibility="invisible">
         <ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content"
-                     android:id="@+id/imageButton4" android:src="@drawable/cat_sleep" android:background="#ffffff"
+                     android:id="@+id/btnpero" android:src="@drawable/pero" android:background="#ffffff"
                      android:layout_below="@+id/header" android:layout_alignParentLeft="true"
                      android:layout_alignParentStart="true"/>
         <ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content"
-                     android:id="@+id/imageButton5" android:src="@drawable/cat_food" android:background="#ffffff"
+                     android:id="@+id/btnball" android:src="@drawable/ball" android:background="#ffffff"
                      android:layout_below="@+id/header" android:layout_alignParentLeft="true"
                      android:layout_alignParentStart="true" android:layout_marginTop="5dp"/>
         <ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content"
-                     android:id="@+id/imageButton6" android:src="@drawable/cat_paper" android:background="#ffffff"
+                     android:id="@+id/btnpaper" android:src="@drawable/cat_paper" android:background="#ffffff"
                      android:layout_below="@+id/header" android:layout_alignParentLeft="true"
                      android:layout_alignParentStart="true" android:layout_marginTop="5dp"/>
     </LinearLayout>
     <FrameLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_toLeftOf="@+id/linearLayout6" android:layout_toRightOf="@+id/linearLayout8"
-            android:layout_toEndOf="@+id/linearLayout8" android:layout_above="@+id/ProgressBars"
+            android:layout_toLeftOf="@+id/linearLayout6" android:layout_toRightOf="@+id/toys"
+            android:layout_toEndOf="@+id/toys" android:layout_above="@+id/ProgressBars"
             android:layout_alignTop="@+id/linearLayout6" android:id="@+id/CENTER">
         <WebView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/PetView"
                  android:layout_centerVertical="true" android:layout_centerHorizontal="true"
                  android:layout_gravity="center"/>
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0"
-                  android:id="@+id/textView12" android:layout_marginTop="30dp" android:layout_alignParentTop="true"
+                  android:id="@+id/c_food" android:layout_marginTop="30dp" android:layout_alignParentTop="true"
                   android:layout_alignParentRight="true" android:layout_alignParentEnd="true"
                   android:layout_gravity="right|center_vertical"/>
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0"
-                  android:id="@+id/textView15" android:layout_marginTop="48dp" android:layout_below="@+id/count_e"
-                  android:layout_alignParentRight="true" android:layout_alignParentEnd="true"
-                  android:layout_gravity="left|center_vertical"/>
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0"
-                  android:id="@+id/textView11" android:layout_marginTop="57dp" android:layout_below="@+id/count_s"
+                  android:id="@+id/c_toys" android:layout_marginTop="57dp" android:layout_below="@+id/count_s"
                   android:layout_alignParentRight="true" android:layout_alignParentEnd="true"
                   android:layout_gravity="right|bottom"/>
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0"
-                  android:id="@+id/textView22" android:layout_marginTop="57dp" android:layout_below="@+id/count_s"
+                  android:id="@+id/c_bed" android:layout_marginTop="57dp" android:layout_below="@+id/count_s"
                   android:layout_alignParentRight="true" android:layout_alignParentEnd="true"
                   android:layout_gravity="right|top"/>
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0"
-                  android:id="@+id/textView23" android:layout_marginTop="57dp" android:layout_below="@+id/count_s"
+                  android:id="@+id/c_paper" android:layout_marginTop="57dp" android:layout_below="@+id/count_s"
                   android:layout_alignParentRight="true" android:layout_alignParentEnd="true"
-                  android:layout_gravity="left|top"/>
+                  android:layout_gravity="left|bottom" android:visibility="invisible"/>
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0"
-                  android:id="@+id/textView24" android:layout_marginTop="57dp" android:layout_below="@+id/count_s"
+                  android:id="@+id/c_pero" android:layout_marginTop="48dp" android:layout_below="@+id/count_e"
                   android:layout_alignParentRight="true" android:layout_alignParentEnd="true"
-                  android:layout_gravity="left|bottom"/>
+                  android:layout_gravity="left|top" android:visibility="invisible"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0"
+                  android:id="@+id/c_ball" android:layout_marginTop="30dp" android:layout_alignParentTop="true"
+                  android:layout_alignParentRight="true" android:layout_alignParentEnd="true"
+                  android:layout_gravity="left|center_vertical" android:visibility="invisible"/>
     </FrameLayout>
     <ImageView
             android:layout_width="wrap_content"

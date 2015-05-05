@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.webkit.WebView;
 import android.widget.*;
 import ru.diamon.tiamon.util.DatabaseHelper;
@@ -25,7 +27,8 @@ public class Game_Zone extends Kitty {
     WebView petView;
     Thread life,events;
 
-    private String bd_age,bd_name;
+    private String bd_name;
+    private long  bd_age;
 
     private int U;
 
@@ -70,35 +73,109 @@ public class Game_Zone extends Kitty {
             Toast.makeText(this,"OK",Toast.LENGTH_SHORT).show();
         });
         btn_sleep.setOnClickListener(view -> {
-            _status_SLEEP+=random.nextInt(20);
-            gifView(petView,"sleep.gif");
-            MediaPlayer mp3 = MediaPlayer.create(this, R.raw.sleep);
-            mp3.start();
-            savePet();
-            bar_sleep.setProgress(_status_SLEEP);
-            tv_sleep.setText(String.valueOf(_status_SLEEP));
-            after(mp3.getDuration()/1000+2);
+            if(_shop_BED){
+                _status_SLEEP+=random.nextInt(20);
+                gifView(petView,"sleep.gif");
+                MediaPlayer mp3 = MediaPlayer.create(this, R.raw.sleep);
+                mp3.start();
+                savePet();
+                bar_sleep.setProgress(_status_SLEEP);
+                tv_sleep.setText(String.valueOf(_status_SLEEP));
+                after(mp3.getDuration()/1000+2);
+            } else Toast.makeText(this,R.string.toast_need_bed,Toast.LENGTH_SHORT).show();
+
         });
         btn_feed.setOnClickListener(view -> {
-            _status_HANGRY+=random.nextInt(20);
-            gifView(petView,"alarm.gif");
-            savePet();
-            tv_hangry.setText(String.valueOf(_status_HANGRY));
-            bar_hangry.setProgress(_status_HANGRY);
-            after(10);
+            if(_shop_FOOD>0){
+                _shop_FOOD--;
+                _status_HANGRY+=random.nextInt(20);
+                gifView(petView,"alarm.gif");
+                savePet();
+                tv_hangry.setText(String.valueOf(_status_HANGRY));
+                bar_hangry.setProgress(_status_HANGRY);
+                after(10);
+            } else Toast.makeText(this,R.string.toast_need_feed,Toast.LENGTH_SHORT).show();
+
         });
         btn_play.setOnClickListener(view -> {
-            _status_PLAY+=random.nextInt(20);
-            gifView(petView,"hihi.gif");
-            MediaPlayer mp3 = MediaPlayer.create(this, R.raw.lol);
-            mp3.start();
-            savePet();
-            tv_play.setText(String.valueOf(_status_PLAY));
-            bar_play.setProgress(_status_PLAY);
-            after(mp3.getDuration());
+            if (_shop_BALL + _shop_PERO + _shop_PAPER >0) {
+                LinearLayout toys = (LinearLayout) findViewById(R.id.toys);
+                Animation anim = AnimationUtils.loadAnimation(this, R.anim.transformtoys);
+                toys.setVisibility(View.VISIBLE);
+                toys.startAnimation(anim);
+                TextView sball = (TextView) findViewById(R.id.c_ball);
+                TextView spero = (TextView) findViewById(R.id.c_pero);
+                TextView spaper = (TextView) findViewById(R.id.c_paper);
+                sball.setVisibility(View.VISIBLE);
+                spero.setVisibility(View.VISIBLE);
+                spaper.setVisibility(View.VISIBLE);
+
+                ImageButton btnpaper = (ImageButton) findViewById(R.id.btnpaper);
+                btnpaper.setOnClickListener(v -> {
+                    _shop_PAPER--;
+                    _status_PLAY += random.nextInt(20);
+                    gifView(petView, "hihi.gif");
+                    MediaPlayer mp3 = MediaPlayer.create(this, R.raw.lol);
+                    mp3.start();
+                    savePet();
+                    tv_play.setText(String.valueOf(_status_PLAY));
+                    bar_play.setProgress(_status_PLAY);
+                    after(mp3.getDuration());
+
+                    toys.setVisibility(View.GONE);
+                    sball.setVisibility(View.GONE);
+                    spero.setVisibility(View.GONE);
+                    spaper.setVisibility(View.GONE);
+                    savePet();
+                    updateLayout();
+                });
+                btnpaper = (ImageButton) findViewById(R.id.btnpero);
+                btnpaper.setOnClickListener(v -> {
+                    _shop_PERO--;
+                    _status_PLAY += random.nextInt(20);
+                    gifView(petView, "hihi.gif");
+                    MediaPlayer mp3 = MediaPlayer.create(this, R.raw.lol);
+                    mp3.start();
+                    savePet();
+                    tv_play.setText(String.valueOf(_status_PLAY));
+                    bar_play.setProgress(_status_PLAY);
+                    after(mp3.getDuration());
+
+                    toys.setVisibility(View.GONE);
+                    sball.setVisibility(View.GONE);
+                    spero.setVisibility(View.GONE);
+                    spaper.setVisibility(View.GONE);
+                    savePet();
+                    updateLayout();
+                });
+                btnpaper = (ImageButton) findViewById(R.id.btnball);
+                btnpaper.setOnClickListener(v -> {
+                    _shop_BALL--;
+                    _status_PLAY += random.nextInt(20);
+                    gifView(petView, "hihi.gif");
+                    MediaPlayer mp3 = MediaPlayer.create(this, R.raw.lol);
+                    mp3.start();
+                    savePet();
+                    tv_play.setText(String.valueOf(_status_PLAY));
+                    bar_play.setProgress(_status_PLAY);
+                    after(mp3.getDuration());
+
+                    toys.setVisibility(View.GONE);
+                    sball.setVisibility(View.GONE);
+                    spero.setVisibility(View.GONE);
+                    spaper.setVisibility(View.GONE);
+                    savePet();
+                    updateLayout();
+                });
+
+            } else Toast.makeText(this,R.string.toast_need_play,Toast.LENGTH_SHORT).show();
         });
         btn_shop.setOnClickListener(view -> startActivity(intent_shop));
-        ripView.setOnClickListener(view -> startActivity(intent_records));
+        ripView.setOnClickListener(view -> {
+            // Удалить Питомца
+            delPet();
+            startActivity(intent_records);
+        });
         // Определение основных потоков
         life = new Thread((Runnable) ()->{
             while (!(_status_HANGRY==0 || _status_SLEEP==0 || _status_PLAY==0)) {
@@ -120,8 +197,7 @@ public class Game_Zone extends Kitty {
                 try {Thread.sleep(_HARD);}
                 catch (InterruptedException e) {System.out.println("thread error");}
             }
-            // Удалить Питомца
-            delPet();
+
         });
     }
 
@@ -129,6 +205,7 @@ public class Game_Zone extends Kitty {
     protected void onStart() {
         super.onStart();
         tv_name.setText(_NAME);
+        tv_age.setText(String.valueOf(_AGE));
         gifView(petView,"hi.gif");
         // Уже играли
         if(_LAST!=0){
@@ -141,7 +218,7 @@ public class Game_Zone extends Kitty {
         }
         savePet();
         updateLayout();
-        life.start(); // Я сказада, стартуем!
+        if ((!(_status_HANGRY==0 || _status_SLEEP==0 || _status_PLAY==0))) life.start(); // Я сказада, стартуем!
     }
 
     public void updateLayout(){
@@ -158,6 +235,23 @@ public class Game_Zone extends Kitty {
             bar_hangry.setProgress(_status_HANGRY);
             tv_catbucks.setText(String.valueOf(_MONEY));
             tv_age.setText(String.valueOf(_AGE));
+
+            TextView c_bed = (TextView) findViewById(R.id.c_bed);
+            if(_shop_BED) c_bed.setText("+");
+            else c_bed.setText("-");
+
+            TextView sball = (TextView) findViewById(R.id.c_ball);
+            sball.setText(String.valueOf(_shop_BALL));
+            TextView sfood = (TextView) findViewById(R.id.c_food);
+            sfood.setText(String.valueOf(_shop_FOOD));
+            TextView spero = (TextView) findViewById(R.id.c_pero);
+            spero.setText(String.valueOf(_shop_PERO));
+            TextView spaper = (TextView) findViewById(R.id.c_paper);
+            spaper.setText(String.valueOf(_shop_PAPER));
+
+            TextView stoys = (TextView) findViewById(R.id.c_toys);
+            stoys.setText(String.valueOf(_shop_PAPER+_shop_PERO+_shop_BALL));
+
             // Относительно Статусов
             if(_status_HANGRY==0 || _status_SLEEP==0 || _status_PLAY==0){
                 ripView.setVisibility(View.VISIBLE);
@@ -166,7 +260,7 @@ public class Game_Zone extends Kitty {
                 btn_feed.setEnabled(false);
                 btn_sleep.setEnabled(false);
                 btn_play.setEnabled(false);
-                bd_age = String.valueOf(_AGE);
+                bd_age = _AGE;
                 bd_name = _NAME;
                 btn_save.setVisibility(View.VISIBLE);
             }else if(_status_HANGRY+_status_PLAY+_status_SLEEP>=270){

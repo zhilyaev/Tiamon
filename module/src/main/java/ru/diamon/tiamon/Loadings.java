@@ -30,11 +30,11 @@ public class Loadings extends Activity {
 
         SimpleDateFormat dateFormat = new SimpleDateFormat();
         // Задайте значения для каждой строки.
-        newValues.put(DatabaseHelper.CAT_NAME_COLUMN, "log");
+        newValues.put(DatabaseHelper.CAT_NAME_COLUMN, "Game created");
         newValues.put(DatabaseHelper.DATE_C, String.valueOf(dateFormat.format(new Date())));
-        newValues.put(DatabaseHelper.AGE_COLUMN, "Game created");
+        newValues.put(DatabaseHelper.AGE_COLUMN, 0);
         // Вставляем данные в базу
-        sdb.insert("cats", null, newValues);
+        //sdb.insert("cats", null, newValues);
 
         getSharedPreferences("APP", Context.MODE_PRIVATE).edit().putBoolean("FIRST",false).apply();
     }

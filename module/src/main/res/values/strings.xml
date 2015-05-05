@@ -19,8 +19,8 @@
     <string name="label_hangry">Hangry</string>
     <string name="label_sleep">Sleep</string>
     <string name="label_play">Happy</string>
-    <string name="label_about"><b>Таймон <i>V 0.3.3</i></b>         \n Разработчик : Дмитрий Жиляев\n Композитор : Mr\n
-        - Никогда не любил Тамагочи</string>
+    <string name="label_about"><b>TIAMON <i>V 1.0 Released </i></b>\n Developer : Dmitriy Zhilyaev\n Music : Alex Lazarev\n
+    - I dont like</string>
 
     <!-- Для кнопок и действий -->
     <string name="action_continue">Continue</string>

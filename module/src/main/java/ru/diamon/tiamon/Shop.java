@@ -1,5 +1,6 @@
 package ru.diamon.tiamon;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -75,7 +76,11 @@ public class Shop extends Kitty implements View.OnClickListener {
 
     @Override // Назад в Меню
     public void onBackPressed() {
-        startActivity(intent_game);
+        if (_status_SLEEP == 0 || _status_PLAY == 0 || _status_HANGRY == 0){
+            startActivity(new Intent(this,Main.class));
+        } else {
+            startActivity(intent_game);
+        }
     }
 
     @Override

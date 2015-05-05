@@ -21,7 +21,7 @@ public class DatabaseHelper extends SQLiteOpenHelper implements BaseColumns {
             + BaseColumns._ID + " integer primary key autoincrement, "
             + CAT_NAME_COLUMN + " text not null, "
             + DATE_C + " text not null, "
-            + AGE_COLUMN + " text not null);";
+            + AGE_COLUMN + " long);";
 
     public DatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory,
                           int version, DatabaseErrorHandler errorHandler) {
