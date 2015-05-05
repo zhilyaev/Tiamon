@@ -6,7 +6,7 @@
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
                 android:paddingBottom="@dimen/activity_vertical_margin"
-                tools:context="ru.diamon.tiamon.Shop">
+                tools:context="ru.diamon.tiamon.Shop" android:background="#ffffff">
 
     <TextView
             android:layout_width="wrap_content"
@@ -45,11 +45,12 @@
                           android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
                           android:gravity="center">
                 <ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content"
-                             android:id="@+id/btn_mysterybox" android:src="@drawable/cat_box"/>
+                             android:id="@+id/btn_bed" android:src="@drawable/bed" android:layout_weight="0.3"/>
                 <ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content"
-                             android:id="@+id/btn_yarn" android:src="@drawable/cat_yarn"/>
+                             android:id="@+id/btn_mysterybox" android:src="@drawable/cat_box" android:layout_weight="0.3"/>
                 <ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content"
-                             android:id="@+id/btn_fridge" android:src="@drawable/cat_fridge"/>
+                             android:id="@+id/btn_fridge" android:src="@drawable/cat_fridge"
+                             android:layout_weight="0.3"/>
             </LinearLayout>
             <RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -63,9 +64,10 @@
                           android:layout_marginLeft="53dp" android:layout_marginStart="53dp"/>
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                           android:textAppearance="?android:attr/textAppearanceSmall" android:text="$ 400"
-                          android:id="@+id/textView7" android:layout_alignParentTop="true"
-                          android:layout_toLeftOf="@+id/textView5" android:layout_toStartOf="@+id/textView5"
-                          android:layout_marginRight="48dp" android:layout_marginEnd="48dp"/>
+                          android:id="@+id/textView7"
+                          android:layout_marginLeft="26dp"
+                          android:layout_marginStart="26dp" android:layout_alignParentTop="true"
+                          android:layout_alignParentLeft="true" android:layout_alignParentStart="true"/>
             </RelativeLayout>
         </LinearLayout>
         <LinearLayout android:orientation="vertical" android:layout_width="fill_parent"
@@ -76,59 +78,39 @@
                           android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
                           android:gravity="center">
                 <ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content"
-                             android:id="@+id/imageButton" android:src="@drawable/cat_box"/>
+                             android:id="@+id/btn_ball" android:src="@drawable/ball" android:layout_weight="0.3"/>
+                <ImageButton android:layout_width="105dp" android:layout_height="match_parent"
+                             android:id="@+id/btn_paper" android:src="@drawable/paper"/>
                 <ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content"
-                             android:id="@+id/imageButton2" android:src="@drawable/cat_yarn"/>
-                <ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content"
-                             android:id="@+id/imageButton3" android:src="@drawable/cat_fridge"/>
+                             android:id="@+id/btn_yarn" android:src="@drawable/pero" android:layout_weight="0.3"/>
             </LinearLayout>
             <RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:textAppearance="?android:attr/textAppearanceSmall" android:text="$ 200"
+                          android:textAppearance="?android:attr/textAppearanceSmall" android:text="$ 50"
                           android:id="@+id/textView8" android:layout_alignParentTop="true"
                           android:layout_centerHorizontal="true"/>
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:textAppearance="?android:attr/textAppearanceSmall" android:text="$ 200"
+                          android:textAppearance="?android:attr/textAppearanceSmall" android:text="$ 300"
                           android:id="@+id/textView9" android:layout_alignParentTop="true"
                           android:layout_toRightOf="@+id/textView8" android:layout_toEndOf="@+id/textView8"
                           android:layout_marginLeft="53dp" android:layout_marginStart="53dp"/>
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                           android:textAppearance="?android:attr/textAppearanceSmall" android:text="$ 200"
-                          android:id="@+id/textView10" android:layout_alignParentTop="true"
-                          android:layout_toLeftOf="@+id/textView8" android:layout_toStartOf="@+id/textView8"
-                          android:layout_marginRight="48dp" android:layout_marginEnd="48dp"/>
-            </RelativeLayout>
-        </LinearLayout>
-        <LinearLayout android:orientation="vertical" android:layout_width="fill_parent"
-                      android:layout_height="wrap_content" android:layout_centerVertical="true"
-                      android:layout_centerHorizontal="true" android:id="@+id/linearLayout6"
-                      android:layout_gravity="center">
-            <LinearLayout android:orientation="horizontal" android:layout_width="match_parent"
-                          android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-                          android:gravity="center">
-                <ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content"
-                             android:id="@+id/imageButton4" android:src="@drawable/cat_box"/>
-                <ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content"
-                             android:id="@+id/imageButton5" android:src="@drawable/cat_yarn"/>
-                <ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content"
-                             android:id="@+id/imageButton6" android:src="@drawable/cat_fridge"/>
-            </LinearLayout>
-            <RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:textAppearance="?android:attr/textAppearanceSmall" android:text="$ 200"
-                          android:id="@+id/textView11" android:layout_alignParentTop="true"
-                          android:layout_centerHorizontal="true"/>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:textAppearance="?android:attr/textAppearanceSmall" android:text="$ 200"
-                          android:id="@+id/textView12" android:layout_alignParentTop="true"
-                          android:layout_toRightOf="@+id/textView11" android:layout_toEndOf="@+id/textView11"
-                          android:layout_marginLeft="53dp" android:layout_marginStart="53dp"/>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:textAppearance="?android:attr/textAppearanceSmall" android:text="$ 200"
-                          android:id="@+id/textView15" android:layout_alignParentTop="true"
-                          android:layout_toLeftOf="@+id/textView11" android:layout_toStartOf="@+id/textView11"
-                          android:layout_marginRight="48dp" android:layout_marginEnd="48dp"/>
+                          android:id="@+id/textView10"
+                          android:layout_alignParentTop="true" android:layout_alignParentLeft="true"
+                          android:layout_alignParentStart="true" android:layout_marginLeft="26dp"
+                          android:layout_marginStart="26dp"/>
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
+    <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true" android:layout_alignParentEnd="true">
+        <WebView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/walk" android:layout_alignParentBottom="true" android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" android:layout_gravity="right|bottom"/>
+    </FrameLayout>
 </RelativeLayout>

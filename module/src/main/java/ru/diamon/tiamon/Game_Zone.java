@@ -1,36 +1,40 @@
 package ru.diamon.tiamon;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.widget.*;
+import ru.diamon.tiamon.util.DatabaseHelper;
 import ru.diamon.tiamon.util.Kitty;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Game_Zone extends Kitty {
 
     TextView tv_age, tv_name,tv_catbucks,tv_sleep,tv_play,tv_hangry;
     ImageButton btn_shop,btn_sleep,btn_feed,btn_play;
+    Button btn_save;
     ImageView ripView;
     Intent intent_shop;
     ProgressBar bar_sleep,bar_play,bar_hangry;
     WebView petView;
     Thread life,events;
 
+    private String bd_age,bd_name;
+
     private int U;
-    final int FIRST_TIME = 15000; // 1000*60*60*12
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         U = Settings.complexity*3000;
+
         // Инициализация вьюшек
         petView = (WebView) findViewById(R.id.PetView);
         tv_name = (TextView) findViewById(R.id.label_name);
@@ -47,7 +51,24 @@ public class Game_Zone extends Kitty {
         btn_sleep = (ImageButton) findViewById(R.id.btn_sleep);
         btn_feed = (ImageButton) findViewById(R.id.btn_feed);
         btn_play = (ImageButton) findViewById(R.id.btn_play);
+        btn_save = (Button) findViewById(R.id.btn_save);
         // Клики
+        // В рекорды
+        btn_save.setOnClickListener(view -> {
+            DatabaseHelper dbHelper = new DatabaseHelper(this, "mydatabase.db", null, 1);
+            SQLiteDatabase sdb = dbHelper.getWritableDatabase();
+            ContentValues newValues = new ContentValues();
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat();
+            // Задайте значения для каждой строки.
+            newValues.put(DatabaseHelper.CAT_NAME_COLUMN, bd_name);
+            newValues.put(DatabaseHelper.DATE_C, String.valueOf(dateFormat.format(new Date())));
+            newValues.put(DatabaseHelper.AGE_COLUMN, bd_age);
+            // Вставляем данные в базу
+            sdb.insert("cats", null, newValues);
+            view.setVisibility(View.GONE);
+            Toast.makeText(this,"OK",Toast.LENGTH_SHORT).show();
+        });
         btn_sleep.setOnClickListener(view -> {
             _status_SLEEP+=random.nextInt(20);
             gifView(petView,"sleep.gif");
@@ -56,7 +77,7 @@ public class Game_Zone extends Kitty {
             savePet();
             bar_sleep.setProgress(_status_SLEEP);
             tv_sleep.setText(String.valueOf(_status_SLEEP));
-            after(mp3.getDuration()/1000);
+            after(mp3.getDuration()/1000+2);
         });
         btn_feed.setOnClickListener(view -> {
             _status_HANGRY+=random.nextInt(20);
@@ -100,16 +121,6 @@ public class Game_Zone extends Kitty {
             // Удалить Питомца
             delPet();
         });
-        // Поток Случайных Событий
-        events = new Thread((Runnable) () ->{
-            while(life.isAlive()){ // Пока жив , а можно было сделать внутри потока life
-                if(random.nextInt(777) == 1) _MONEY+=100000;
-                //if(random.nextInt(100) == 5) _category_ill = true;
-                // Уснуть
-                try {Thread.sleep(U);}
-                catch (InterruptedException e) {System.out.println("thread error");}
-            }
-        });
     }
 
     @Override
@@ -120,7 +131,8 @@ public class Game_Zone extends Kitty {
         // Уже играли
         if(_LAST!=0){
             // Сумма Отниманий  = (S + 2d-4f) / (2d) * 10
-            long csum = (((new Date().getTime()-_LAST)+2*U-4*FIRST_TIME) / (2*U)) * random.nextInt(10);
+           // long csum = (((new Date().getTime()-_LAST)+2*U-4*FIRST_TIME) / (2*U)) * random.nextInt(10);
+            long csum = 50;
             _status_HANGRY -= csum;
             _status_SLEEP -= csum;
             _status_PLAY -= csum;
@@ -148,15 +160,18 @@ public class Game_Zone extends Kitty {
             // Относительно Статусов
             if(_status_HANGRY==0 || _status_SLEEP==0 || _status_PLAY==0){
                 ripView.setVisibility(View.VISIBLE);
-                petView.setEnabled(false);
+                petView.setVisibility(View.GONE);
                 btn_shop.setEnabled(false);
                 btn_feed.setEnabled(false);
                 btn_sleep.setEnabled(false);
                 btn_play.setEnabled(false);
+                bd_age = String.valueOf(_AGE);
+                bd_name = _NAME;
+                btn_save.setVisibility(View.VISIBLE);
             }else if(_status_HANGRY+_status_PLAY+_status_SLEEP>=270){
                 _MONEY+=1000;
                 gifView(petView,"love.gif");
-            }else if(_status_HANGRY+_status_PLAY+_status_SLEEP<=30){
+            }else if((_status_HANGRY+_status_PLAY+_status_SLEEP<=30) || _status_HANGRY<=10 || _status_PLAY<=10 || _status_SLEEP<=10){
                 gifView(petView,"sorry.gif");
             }else{
                 gifView(petView,"hi.gif");
@@ -168,7 +183,7 @@ public class Game_Zone extends Kitty {
         Thread bug = new Thread((Runnable)()->{
             try {Thread.sleep(t*1000);}
             catch (InterruptedException e) {System.out.println("thread error");}
-            gifView(petView,"hi.gif");
+            updateLayout();
         });
         bug.start();
     }

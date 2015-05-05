@@ -23,6 +23,8 @@ public class NewGame extends Kitty {
         delPet();
         _NAME = name.getText().toString();
         _BIRTH = new Date().getTime();
+        _MONEY = _MONEY * (4 -Settings.complexity);
+        _HARD = _HARD * (4 -Settings.complexity);
         savePet();
         startActivity(intent_game);
     }

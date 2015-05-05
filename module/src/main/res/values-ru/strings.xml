@@ -45,6 +45,11 @@
     <string name="settings_easy">Легко</string>
     <string name="settings_complexity">Сложность игры</string>
     <string name="title_activity_settings">Настройки</string>
+    <string name="action_save">Сохранить</string>
+    <string name="toast_moneyistight">Нужно БОЛЬШЕ золота!</string>
+    <string name="toast_need_bed">Сначала купите кровать</string>
+    <string name="toast_need_feed">У вас пустой холодильник.</string>
+    <string name="toast_need_play">Загляните в магазин!</string>
 
 
 </resources>

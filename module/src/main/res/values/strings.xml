@@ -40,5 +40,10 @@
     <string name="settings_norm">Normal</string>
     <string name="settings_easy">Easy</string>
     <string name="settings_complexity">Complexity game</string>
+    <string name="action_save">Save Record</string>
+    <string name="toast_moneyistight">Money is tight</string>
+    <string name="toast_need_bed">You Should buy the bed</string>
+    <string name="toast_need_feed">You Should buy the food</string>
+    <string name="toast_need_play">Going to shop!</string>
 
 </resources>
