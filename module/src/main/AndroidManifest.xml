@@ -37,6 +37,9 @@
         <service
             android:name=".util.SoundService"
             android:enabled="true" />
+        <service
+                android:name=".util.LifeService"
+                android:enabled="true" />
 
         <activity
             android:name=".Shop"

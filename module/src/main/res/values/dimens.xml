@@ -6,4 +6,5 @@
     <dimen name="menu_btn_width">500px</dimen>
     <dimen name="menu_btn_height">60dp</dimen>
     <dimen name="category_items">10dp</dimen>
+    <dimen name="status_image">40dp</dimen>
 </resources>

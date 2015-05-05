@@ -110,6 +110,8 @@ public class Game_Zone extends Kitty {
                 if(_HARD>U){_HARD -= U;}
                 // Сохранить
                 savePet();
+                //Загрузить
+                loadPet();
                 // Обновить
                 updateLayout();
                 // Костыль, чтобы не спать
@@ -131,14 +133,13 @@ public class Game_Zone extends Kitty {
         // Уже играли
         if(_LAST!=0){
             // Сумма Отниманий  = (S + 2d-4f) / (2d) * 10
-           // long csum = (((new Date().getTime()-_LAST)+2*U-4*FIRST_TIME) / (2*U)) * random.nextInt(10);
-            long csum = 50;
+            long csum = (((new Date().getTime()-_LAST)+2*U-4*15000) / (2*U)) * random.nextInt(10);
             _status_HANGRY -= csum;
             _status_SLEEP -= csum;
             _status_PLAY -= csum;
             _LAST = 0;
-            savePet();
         }
+        savePet();
         updateLayout();
         life.start(); // Я сказада, стартуем!
     }

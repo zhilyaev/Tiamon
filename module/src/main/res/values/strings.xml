@@ -45,5 +45,6 @@
     <string name="toast_need_bed">You Should buy the bed</string>
     <string name="toast_need_feed">You Should buy the food</string>
     <string name="toast_need_play">Going to shop!</string>
+    <string name="toast_loose">You do not win in loterry</string>
 
 </resources>

@@ -50,6 +50,7 @@
     <string name="toast_need_bed">Сначала купите кровать</string>
     <string name="toast_need_feed">У вас пустой холодильник.</string>
     <string name="toast_need_play">Загляните в магазин!</string>
+    <string name="toast_loose">Вы ничего не выиграли</string>
 
 
 </resources>
