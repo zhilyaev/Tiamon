@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.IBinder;
 import ru.diamon.tiamon.R;
+import ru.diamon.tiamon.Settings;
 
 public class SoundService extends Service {
     MediaPlayer player;
@@ -17,6 +18,9 @@ public class SoundService extends Service {
 
     @Override
     public void onCreate() {
+        if(Settings.complexity==3)r_id_row = R.raw.probuem;
+        else r_id_row = R.raw.backgroud;
+        
         player = MediaPlayer.create(this, r_id_row);
         player.setLooping(true);
     }

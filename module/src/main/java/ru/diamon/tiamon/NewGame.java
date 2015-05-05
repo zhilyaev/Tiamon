@@ -30,6 +30,7 @@ public class NewGame extends Kitty {
         _shop_BALL = (4 -Settings.complexity);
         _AGE = 1;
         savePet();
+        intent_game.putExtra("goto", true);
         startActivity(intent_game);
     }
 }

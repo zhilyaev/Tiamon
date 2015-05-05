@@ -38,8 +38,11 @@ public class About extends Activity {
      * The instance of the {@link SystemUiHider} for this activity.
      */
     private SystemUiHider mSystemUiHider;
+    @Override // Назад в Меню
     public void onBackPressed() {
-        startActivity(new Intent(this, Main.class));
+        Intent intent_main = new Intent(this,Main.class);
+        intent_main.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent_main);
     }
 
     @Override

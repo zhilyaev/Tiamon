@@ -144,6 +144,10 @@ public class Shop extends Kitty implements View.OnClickListener {
                         case 5:
                             _shop_FOOD+=random.nextInt(3)+2;
                             break;
+                        case 6:
+                            _MONEY+=777;
+                            Toast.makeText(this,R.string.event_lottery,Toast.LENGTH_SHORT).show();
+                            break;
                         default: Toast.makeText(this,R.string.toast_loose,Toast.LENGTH_SHORT).show();
                     }
 

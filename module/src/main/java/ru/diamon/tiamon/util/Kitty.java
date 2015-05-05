@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import java.util.Date;
+
 abstract public class Kitty extends Index {
 
     @Override
@@ -35,7 +37,7 @@ abstract public class Kitty extends Index {
        E.putLong("AGE", _AGE);
        E.putInt("MONEY", _MONEY);
        E.putLong("BIRTH", _BIRTH);
-       E.putLong("LAST", _LAST);
+       E.putLong("LAST", new Date().getTime());
        E.putLong("HARD",_HARD);
        E.putInt("SLEEP", _status_SLEEP);
        E.putInt("PLAY",_status_PLAY);

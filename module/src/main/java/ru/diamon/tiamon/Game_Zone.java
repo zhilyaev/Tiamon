@@ -33,8 +33,18 @@ public class Game_Zone extends Kitty {
     private int U;
 
     @Override
+    public void soul(View view) {
+        savePet();
+        super.soul(view);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (!intent_now.getBooleanExtra("goto",false)){
+            intent_now.putExtra("goto",false);
+            startActivity(intent_main);
+        }
         setContentView(R.layout.activity_game);
         U = Settings.complexity*3000;
 
@@ -93,7 +103,7 @@ public class Game_Zone extends Kitty {
                 savePet();
                 tv_hangry.setText(String.valueOf(_status_HANGRY));
                 bar_hangry.setProgress(_status_HANGRY);
-                after(10);
+                after(5);
             } else Toast.makeText(this,R.string.toast_need_feed,Toast.LENGTH_SHORT).show();
 
         });
@@ -112,60 +122,68 @@ public class Game_Zone extends Kitty {
 
                 ImageButton btnpaper = (ImageButton) findViewById(R.id.btnpaper);
                 btnpaper.setOnClickListener(v -> {
-                    _shop_PAPER--;
-                    _status_PLAY += random.nextInt(20);
-                    gifView(petView, "hihi.gif");
-                    MediaPlayer mp3 = MediaPlayer.create(this, R.raw.lol);
-                    mp3.start();
-                    savePet();
-                    tv_play.setText(String.valueOf(_status_PLAY));
-                    bar_play.setProgress(_status_PLAY);
-                    after(mp3.getDuration());
+                    if(_shop_PAPER>0){
+                        _shop_PAPER--;
+                        _status_PLAY += random.nextInt(20);
+                        gifView(petView, "hihi.gif");
+                        MediaPlayer mp3 = MediaPlayer.create(this, R.raw.lol);
+                        mp3.start();
+                        savePet();
+                        tv_play.setText(String.valueOf(_status_PLAY));
+                        bar_play.setProgress(_status_PLAY);
+                        after(mp3.getDuration());
 
-                    toys.setVisibility(View.GONE);
-                    sball.setVisibility(View.GONE);
-                    spero.setVisibility(View.GONE);
-                    spaper.setVisibility(View.GONE);
-                    savePet();
-                    after(3);
+                        toys.setVisibility(View.GONE);
+                        sball.setVisibility(View.GONE);
+                        spero.setVisibility(View.GONE);
+                        spaper.setVisibility(View.GONE);
+                        savePet();
+                        after(3);
+                    } else Toast.makeText(this,R.string.toast_need_play,Toast.LENGTH_SHORT).show();
+
                 });
                 btnpaper = (ImageButton) findViewById(R.id.btnpero);
                 btnpaper.setOnClickListener(v -> {
-                    _shop_PERO--;
-                    _status_PLAY += random.nextInt(20);
-                    gifView(petView, "hihi.gif");
-                    MediaPlayer mp3 = MediaPlayer.create(this, R.raw.lol);
-                    mp3.start();
-                    savePet();
-                    tv_play.setText(String.valueOf(_status_PLAY));
-                    bar_play.setProgress(_status_PLAY);
-                    after(mp3.getDuration());
+                    if(_shop_PERO>0){
+                        _shop_PERO--;
+                        _status_PLAY += random.nextInt(20);
+                        gifView(petView, "hihi.gif");
+                        MediaPlayer mp3 = MediaPlayer.create(this, R.raw.lol);
+                        mp3.start();
+                        savePet();
+                        tv_play.setText(String.valueOf(_status_PLAY));
+                        bar_play.setProgress(_status_PLAY);
+                        after(mp3.getDuration());
 
-                    toys.setVisibility(View.GONE);
-                    sball.setVisibility(View.GONE);
-                    spero.setVisibility(View.GONE);
-                    spaper.setVisibility(View.GONE);
-                    savePet();
-                    after(3);
+                        toys.setVisibility(View.GONE);
+                        sball.setVisibility(View.GONE);
+                        spero.setVisibility(View.GONE);
+                        spaper.setVisibility(View.GONE);
+                        savePet();
+                        after(3);
+                    } else Toast.makeText(this,R.string.toast_need_play,Toast.LENGTH_SHORT).show();
                 });
                 btnpaper = (ImageButton) findViewById(R.id.btnball);
                 btnpaper.setOnClickListener(v -> {
-                    _shop_BALL--;
-                    _status_PLAY += random.nextInt(20);
-                    gifView(petView, "hihi.gif");
-                    MediaPlayer mp3 = MediaPlayer.create(this, R.raw.lol);
-                    mp3.start();
-                    savePet();
-                    tv_play.setText(String.valueOf(_status_PLAY));
-                    bar_play.setProgress(_status_PLAY);
-                    after(mp3.getDuration());
+                    if(_shop_BALL>0){
+                        _shop_BALL--;
+                        _status_PLAY += random.nextInt(20);
+                        gifView(petView, "hihi.gif");
+                        MediaPlayer mp3 = MediaPlayer.create(this, R.raw.lol);
+                        mp3.start();
+                        savePet();
+                        tv_play.setText(String.valueOf(_status_PLAY));
+                        bar_play.setProgress(_status_PLAY);
+                        after(mp3.getDuration());
 
-                    toys.setVisibility(View.GONE);
-                    sball.setVisibility(View.GONE);
-                    spero.setVisibility(View.GONE);
-                    spaper.setVisibility(View.GONE);
-                    savePet();
-                    after(3);
+                        toys.setVisibility(View.GONE);
+                        sball.setVisibility(View.GONE);
+                        spero.setVisibility(View.GONE);
+                        spaper.setVisibility(View.GONE);
+                        savePet();
+                        after(3);
+                    } else Toast.makeText(this,R.string.toast_need_play,Toast.LENGTH_SHORT).show();
+
                 });
 
             } else Toast.makeText(this,R.string.toast_need_play,Toast.LENGTH_SHORT).show();
@@ -204,17 +222,16 @@ public class Game_Zone extends Kitty {
         tv_name.setText(_NAME);
         tv_age.setText(String.valueOf(_AGE));
         gifView(petView,"hi.gif");
-        // Уже играли
-        if(_LAST!=0){
-            // Сумма Отниманий  = (S + 2d-4f) / (2d) * 10
-            int csum = (int) ((((new Date().getTime()-_LAST)+2*U-4*60000) / (2*U)) * random.nextInt(10));
-            _status_HANGRY -= csum;
-            _status_SLEEP -= csum;
-            _status_PLAY -= csum;
-            _MONEY +=random.nextInt(9)*10;
-            _LAST = 0;
+            // Сумма Отниманий  = [МАТАН]
+            int s =(int) (new Date().getTime()-_LAST);
+            int c = (60000 + (60000-U)) / 2;
+            int n = s / c;
+            int scn =  n * random.nextInt(10);
+            _status_HANGRY -= scn;
+            _status_SLEEP -= scn;
+            _status_PLAY -= scn;
+            if(scn!=0)_MONEY +=random.nextInt(50)*10;
             savePet();
-        }
         updateLayout();
         if(!(_status_HANGRY==0 || _status_SLEEP==0 || _status_PLAY==0)) life.start(); // Я сказада, стартуем!
     }

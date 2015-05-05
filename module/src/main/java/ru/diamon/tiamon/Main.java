@@ -13,7 +13,12 @@ import ru.diamon.tiamon.util.Kitty;
 public class Main extends Kitty {
     protected Intent intent_newgame;
     private Button btn_continue;
-    
+
+    @Override
+    public void onBackPressed() {
+        this.finish();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +28,7 @@ public class Main extends Kitty {
 
         setContentView(R.layout.activity_main);
         btn_continue = (Button) findViewById(R.id.menu_continue);
-        btn_continue.setOnClickListener(view -> startActivity(intent_game));
+        btn_continue.setOnClickListener(view -> {intent_game.putExtra("goto",true); startActivity(intent_game);});
     }
 
     @Override

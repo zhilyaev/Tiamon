@@ -17,8 +17,11 @@
     <string name="label_sleep">Бодрость</string>
     <string name="label_play">Счастье</string>
     <string name="label_about">
-        \n Разработчик : Дмитрий Жиляев\n Композитор : Александр Лазарев\n
-        - Никогда не любил Тамагочи
+        <b>Таймон<i>V 1.0 Релиз</i></b>\n
+        Разработчик : Дмитрий Жиляев\n
+        Музыка : Александр Лазарев\n
+        - Никогда не любил Тамагочи\n
+        - Извините за баги :)
     </string>
 
     <!-- Для кнопок и действий -->
@@ -48,6 +51,7 @@
     <string name="toast_need_feed">У вас пустой холодильник.</string>
     <string name="toast_need_play">Загляните в магазин!</string>
     <string name="toast_loose">Вы ничего не выиграли</string>
+    <string name="just_lulz">Загрузка ради лулзов</string>
 
 
 </resources>

@@ -19,8 +19,13 @@
     <string name="label_hangry">Hangry</string>
     <string name="label_sleep">Sleep</string>
     <string name="label_play">Happy</string>
-    <string name="label_about"><b>TIAMON
-        <i>V 1.0 Release</i></b></string>
+    <string name="label_about">
+        <b>Tiamon<i>V 1.0 Release</i></b>\n
+        Developer : Dmitriy Zhilyaev\n
+        Music : Alex Lazarev\n
+        - I dont like\n
+        - Sorry for bugs :)
+    </string>
 
     <!-- Для кнопок и действий -->
     <string name="action_continue">Continue</string>
@@ -46,5 +51,6 @@
     <string name="toast_need_feed">You Should buy the food</string>
     <string name="toast_need_play">Going to shop!</string>
     <string name="toast_loose">You do not win in loterry</string>
+    <string name="just_lulz">Loading just for fun</string>
 
 </resources>

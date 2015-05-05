@@ -15,10 +15,15 @@ import java.util.Random;
 
 public abstract class Index extends Activity {
 
-    protected Intent intent_records,intent_game,intent_now,intent_about;
+    protected Intent intent_records,intent_game,intent_now,intent_about,intent_main;
     protected static Random random;
     protected Handler handler;
     protected static boolean isSound;
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
 
     @Override
     protected void onDestroy() {
@@ -31,6 +36,7 @@ public abstract class Index extends Activity {
         intent_records = new Intent(this, Records.class);
         intent_game = new Intent(this, Game_Zone.class);
         intent_about = new Intent(this, About.class);
+        intent_main = new Intent(this,Main.class);
         random = new Random();
         handler = new Handler();
         intent_now = getIntent();
@@ -50,7 +56,8 @@ public abstract class Index extends Activity {
 
     @Override // Назад в Меню
     public void onBackPressed() {
-        startActivity(new Intent(this, Main.class));
+        intent_main.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent_main);
     }
 
     @Override

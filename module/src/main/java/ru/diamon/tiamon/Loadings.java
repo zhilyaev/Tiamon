@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.webkit.WebView;
+import android.widget.Toast;
 import ru.diamon.tiamon.util.DatabaseHelper;
 import ru.diamon.tiamon.util.Index;
 
@@ -35,7 +36,7 @@ public class Loadings extends Activity {
         newValues.put(DatabaseHelper.AGE_COLUMN, 0);
         // Вставляем данные в базу
         //sdb.insert("cats", null, newValues);
-
+        Toast.makeText(this,R.string.just_lulz,Toast.LENGTH_LONG).show();
         getSharedPreferences("APP", Context.MODE_PRIVATE).edit().putBoolean("FIRST",false).apply();
     }
 
