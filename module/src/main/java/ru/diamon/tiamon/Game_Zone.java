@@ -81,7 +81,7 @@ public class Game_Zone extends Kitty {
                 savePet();
                 bar_sleep.setProgress(_status_SLEEP);
                 tv_sleep.setText(String.valueOf(_status_SLEEP));
-                after(mp3.getDuration()/1000+2);
+                after(mp3.getDuration()/1000+3);
             } else Toast.makeText(this,R.string.toast_need_bed,Toast.LENGTH_SHORT).show();
 
         });
@@ -127,7 +127,7 @@ public class Game_Zone extends Kitty {
                     spero.setVisibility(View.GONE);
                     spaper.setVisibility(View.GONE);
                     savePet();
-                    updateLayout();
+                    after(3);
                 });
                 btnpaper = (ImageButton) findViewById(R.id.btnpero);
                 btnpaper.setOnClickListener(v -> {
@@ -146,7 +146,7 @@ public class Game_Zone extends Kitty {
                     spero.setVisibility(View.GONE);
                     spaper.setVisibility(View.GONE);
                     savePet();
-                    updateLayout();
+                    after(3);
                 });
                 btnpaper = (ImageButton) findViewById(R.id.btnball);
                 btnpaper.setOnClickListener(v -> {
@@ -165,17 +165,13 @@ public class Game_Zone extends Kitty {
                     spero.setVisibility(View.GONE);
                     spaper.setVisibility(View.GONE);
                     savePet();
-                    updateLayout();
+                    after(3);
                 });
 
             } else Toast.makeText(this,R.string.toast_need_play,Toast.LENGTH_SHORT).show();
         });
         btn_shop.setOnClickListener(view -> startActivity(intent_shop));
-        ripView.setOnClickListener(view -> {
-            // Удалить Питомца
-            delPet();
-            startActivity(intent_records);
-        });
+        ripView.setOnClickListener(view -> startActivity(intent_records));
         // Определение основных потоков
         life = new Thread((Runnable) ()->{
             while (!(_status_HANGRY==0 || _status_SLEEP==0 || _status_PLAY==0)) {
@@ -197,7 +193,8 @@ public class Game_Zone extends Kitty {
                 try {Thread.sleep(_HARD);}
                 catch (InterruptedException e) {System.out.println("thread error");}
             }
-
+            // Удалить Питомца
+            delPet();
         });
     }
 
@@ -210,15 +207,16 @@ public class Game_Zone extends Kitty {
         // Уже играли
         if(_LAST!=0){
             // Сумма Отниманий  = (S + 2d-4f) / (2d) * 10
-            long csum = (((new Date().getTime()-_LAST)+2*U-4*15000) / (2*U)) * random.nextInt(10);
+            int csum = (int) ((((new Date().getTime()-_LAST)+2*U-4*60000) / (2*U)) * random.nextInt(10));
             _status_HANGRY -= csum;
             _status_SLEEP -= csum;
             _status_PLAY -= csum;
+            _MONEY +=random.nextInt(9)*10;
             _LAST = 0;
+            savePet();
         }
-        savePet();
         updateLayout();
-        if ((!(_status_HANGRY==0 || _status_SLEEP==0 || _status_PLAY==0))) life.start(); // Я сказада, стартуем!
+        if(!(_status_HANGRY==0 || _status_SLEEP==0 || _status_PLAY==0)) life.start(); // Я сказада, стартуем!
     }
 
     public void updateLayout(){

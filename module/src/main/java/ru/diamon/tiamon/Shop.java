@@ -1,6 +1,7 @@
 package ru.diamon.tiamon;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -103,6 +104,8 @@ public class Shop extends Kitty implements View.OnClickListener {
                 break;
             case R.id.btn_mysterybox:
                 if (before(400)) {
+                    MediaPlayer player = MediaPlayer.create(this, R.raw.win);
+                    player.start();
                     ImageView q = (ImageView) findViewById(R.id.q);
                     LinearLayout lay = (LinearLayout) findViewById(R.id.btns);
                     Animation anim = AnimationUtils.loadAnimation(this, R.anim.q);
@@ -143,6 +146,7 @@ public class Shop extends Kitty implements View.OnClickListener {
                             break;
                         default: Toast.makeText(this,R.string.toast_loose,Toast.LENGTH_SHORT).show();
                     }
+
                 }
                 break;
             case R.id.btn_fridge:

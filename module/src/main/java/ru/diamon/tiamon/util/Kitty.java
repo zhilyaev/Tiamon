@@ -55,7 +55,7 @@ abstract public class Kitty extends Index {
         _MONEY = PET.getInt("MONEY",500);
         _BIRTH = PET.getLong("BIRTH", 0);
         _LAST = PET.getLong("LAST",0);
-        _HARD = PET.getLong("HARD", 15000);
+        _HARD = PET.getLong("HARD", 60000);
         _shop_BALL = PET.getInt("BALL",0);
         _status_HANGRY = PET.getInt("HANGRY",42+random.nextInt(42));
         _status_SLEEP = PET.getInt("SLEEP",42+random.nextInt(42));
@@ -74,7 +74,7 @@ abstract public class Kitty extends Index {
         E.putInt("MONEY", 500);
         E.putLong("BIRTH",0);
         E.putLong("LAST", 0);
-        E.putLong("HARD",15000);
+        E.putLong("HARD",60000);
         E.putInt("SLEEP",42+random.nextInt(42));
         E.putInt("PLAY",42+random.nextInt(42));
         E.putInt("HANGRY",42+random.nextInt(42));

@@ -2,6 +2,7 @@ package ru.diamon.tiamon;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -19,6 +20,7 @@ public class Records extends Index {
         SQLiteDatabase sdb = dbHelper.getWritableDatabase();
         String[] cols = new String[] {DatabaseHelper.CAT_NAME_COLUMN, DatabaseHelper.DATE_C, DatabaseHelper.AGE_COLUMN};
         Cursor crs = sdb.query("cats", cols, null, null,null,null,DatabaseHelper.AGE_COLUMN+" DESC");
+        // лучше прямой запрос!
         String[] inlist = new String[crs.getCount()];
 
         //crs.moveToFirst();// Извращенья
@@ -38,4 +40,10 @@ public class Records extends Index {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        MediaPlayer player = MediaPlayer.create(this, R.raw.win);
+        player.start();
+    }
 }
