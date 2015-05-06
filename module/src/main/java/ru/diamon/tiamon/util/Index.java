@@ -18,7 +18,7 @@ public abstract class Index extends Activity {
     protected Intent intent_records,intent_game,intent_now,intent_about,intent_main;
     protected static Random random;
     protected Handler handler;
-    protected static boolean isSound;
+    public static boolean isSound;
 
     @Override
     protected void onStop() {

@@ -1,5 +1,6 @@
 package ru.diamon.tiamon;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,7 +12,7 @@ import ru.diamon.tiamon.util.Index;
 import ru.diamon.tiamon.util.SoundService;
 
 
-public class Settings extends Index {
+public class Settings extends Activity {
 
     Switch btn_sound;
     RadioGroup rg;
@@ -27,13 +28,13 @@ public class Settings extends Index {
         digg = (ImageView) findViewById(R.id.digview);
         rg = (RadioGroup) findViewById(R.id.group);
 
-        btn_sound.setChecked(isSound);
+        btn_sound.setChecked(Index.isSound);
         APP = getSharedPreferences("APP", Context.MODE_PRIVATE);
         complexity = APP.getInt("COMPLEXITY", 3);
         btn_sound.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if(isChecked) startService(new Intent(this, SoundService.class));
             else stopService(new Intent(this, SoundService.class));
-            isSound = isChecked;
+            Index.isSound = isChecked;
         });
 
         switch (complexity){

@@ -58,8 +58,7 @@ public class Shop extends Kitty implements View.OnClickListener {
 
     public void after() {
         savePet();
-
-        handler.post((Runnable) ()->{
+        loadPet();
             guf.startAnimation(egy);
             sball.setText(String.valueOf(_shop_BALL));
             sfood.setText(String.valueOf(_shop_FOOD));
@@ -68,7 +67,6 @@ public class Shop extends Kitty implements View.OnClickListener {
             if(_shop_BED) sbed.setText("+");
             else sbed.setText("-");
             cash.setText(String.valueOf(_MONEY));
-        });
     }
     public boolean before(int money) {
         if(_MONEY-money<0){Toast.makeText(this,R.string.toast_moneyistight,Toast.LENGTH_SHORT).show(); return false;}
@@ -103,7 +101,7 @@ public class Shop extends Kitty implements View.OnClickListener {
                 _shop_BED = true;
                 break;
             case R.id.btn_mysterybox:
-                if (before(400)) {
+                if (before(250)) {
                     MediaPlayer player = MediaPlayer.create(this, R.raw.win);
                     player.start();
                     ImageView q = (ImageView) findViewById(R.id.q);

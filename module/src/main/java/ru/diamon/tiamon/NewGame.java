@@ -23,7 +23,7 @@ public class NewGame extends Kitty {
         delPet();
         _NAME = name.getText().toString();
         _BIRTH = new Date().getTime();
-        _MONEY = _MONEY * (4 -Settings.complexity);
+        _MONEY = 500 * (4 -Settings.complexity);
         _shop_FOOD = random.nextInt(4-Settings.complexity)*5;
         _shop_PERO = (4 -Settings.complexity);
         _shop_PAPER = (4 -Settings.complexity);

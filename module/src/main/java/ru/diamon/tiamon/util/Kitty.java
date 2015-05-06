@@ -20,7 +20,7 @@ abstract public class Kitty extends Index {
 
     protected String _NAME;
     protected long _LAST,_BIRTH,_AGE,_HARD;
-    protected int _status_HANGRY,_status_SLEEP,_status_PLAY,_MONEY,_shop_BALL,_shop_PERO,_shop_PAPER,_shop_FOOD;
+    protected int _status_HANGRY,_status_SLEEP,_status_PLAY,_MONEY,_shop_BALL,_shop_PERO,_shop_PAPER,_shop_FOOD,_N;
     protected boolean _shop_BED;
 
    public void savePet(){
@@ -34,6 +34,7 @@ abstract public class Kitty extends Index {
 
        E = PET.edit();
        E.putString("NAME",_NAME);
+      // E.putInt("N",_N);
        E.putLong("AGE", _AGE);
        E.putInt("MONEY", _MONEY);
        E.putLong("BIRTH", _BIRTH);
@@ -53,6 +54,7 @@ abstract public class Kitty extends Index {
     public void loadPet(){
         PET = getSharedPreferences("PET", Context.MODE_PRIVATE);
         _NAME = PET.getString("NAME", "Tiamon");
+        //_N = PET.getInt("N",(60000/(3000* Settings.complexity)));
         _AGE = PET.getLong("AGE",0);
         _MONEY = PET.getInt("MONEY",500);
         _BIRTH = PET.getLong("BIRTH", 0);
@@ -72,6 +74,7 @@ abstract public class Kitty extends Index {
     public void delPet(){
         E = PET.edit();
         E.putString("NAME","Tiamon");
+       // E.putInt("N",(60000/(3000* Settings.complexity)));
         E.putLong("AGE",0);
         E.putInt("MONEY", 500);
         E.putLong("BIRTH",0);
