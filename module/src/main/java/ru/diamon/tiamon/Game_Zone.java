@@ -34,7 +34,7 @@ public class Game_Zone extends Kitty {
 
     @Override
     public void soul(View view) {
-        savePet();
+       // savePet();
         super.soul(view);
     }
 
@@ -193,10 +193,20 @@ public class Game_Zone extends Kitty {
         // Определение основных потоков
         life = new Thread((Runnable) ()->{
             while (!(_status_HANGRY==0 || _status_SLEEP==0 || _status_PLAY==0)) {
-                _AGE = (new Date().getTime()-_BIRTH)/1000;
-                _status_PLAY -= random.nextInt(10);
-                _status_HANGRY -= random.nextInt(10);
-                _status_SLEEP -= random.nextInt(10);
+                // Уснуть
+                try {Thread.sleep(_HARD);}
+                catch (InterruptedException e) {System.out.println("thread error");}
+
+                _AGE = (new Date().getTime()-_BIRTH)/(1000*Settings.complexity);
+                // Сумма Отниманий  = [МАТАН] =scn
+                int s =(int) (new Date().getTime()-_LAST);
+                int c = (60000 + (60000-U)) / 2;
+                int n = s / c;
+                _status_HANGRY -= n * random.nextInt(10);
+                _status_SLEEP -= n * random.nextInt(10);
+                _status_PLAY -= n * random.nextInt(10);
+                if(n!=0)_MONEY +=random.nextInt(50)*10;
+
                 // Усложнить
                 if(_HARD>U){_HARD -= U;}
                 // Сохранить
@@ -207,9 +217,6 @@ public class Game_Zone extends Kitty {
                 updateLayout();
                 // Костыль, чтобы не спать
                 if(_status_HANGRY==0 || _status_SLEEP==0 || _status_PLAY==0) break;
-                // Уснуть
-                try {Thread.sleep(_HARD);}
-                catch (InterruptedException e) {System.out.println("thread error");}
             }
             // Удалить Питомца
             delPet();
@@ -222,16 +229,7 @@ public class Game_Zone extends Kitty {
         tv_name.setText(_NAME);
         tv_age.setText(String.valueOf(_AGE));
         gifView(petView,"hi.gif");
-            // Сумма Отниманий  = [МАТАН]
-            int s =(int) (new Date().getTime()-_LAST);
-            int c = (60000 + (60000-U)) / 2;
-            int n = s / c;
-            int scn =  n * random.nextInt(10);
-            _status_HANGRY -= scn;
-            _status_SLEEP -= scn;
-            _status_PLAY -= scn;
-            if(scn!=0)_MONEY +=random.nextInt(50)*10;
-            savePet();
+        savePet();
         updateLayout();
         if(!(_status_HANGRY==0 || _status_SLEEP==0 || _status_PLAY==0)) life.start(); // Я сказада, стартуем!
     }
